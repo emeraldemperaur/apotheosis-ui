@@ -1,0 +1,101 @@
+.agentic-card{
+  box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #ffffff;
+  transition: 0.3s;
+  border-radius: 5px;
+  background: radial-gradient(#ffffff, #f2f2f2) !important;
+  padding: 2px 5px 2px 5px;
+  margin-left: 69px;
+  margin-right: 69px;
+  margin-top: 33px;
+  margin-bottom: 169px;
+  align-items: center;
+  text-decoration: none !important;
+}
+
+.agentic-card p{
+    text-align: center;
+    font-family: 'Barlow';
+    letter-spacing: 0.13em;
+    margin-top: 33px !important;
+    margin-bottom: 33px;
+    color: #000000;
+    text-decoration: unset !important;
+}
+
+.agentic-card a{
+    color: #666;
+    text-decoration: unset !important;
+}
+
+.agentic-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.agentic-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Creates 4 equal-width columns */
+  gap: 20px; /* Adds space between columns */
+  padding: 2px 5px 20px 5px;
+  height: fit-content;
+}
+
+.agentic-item {
+  //background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none !important;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .agentic-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .agentic-container {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+  }
+}
+
+
+.agent-card{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    transition: 0.3s;
+    border-radius: 10px;
+    box-shadow: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #ffffff;
+    text-decoration: none !important;
+}
+
+.agent-card:hover {
+  box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #ffffff;
+}
+
+.agent-card .box{
+    padding: 10px;
+}
+
+.agent-card .box p{
+    margin-top: unset !important;
+    margin-bottom: unset !important;
+    text-decoration: none !important;
+}
+
+.agent-card .box .agent-name{
+    font-size: 19px;
+    letter-spacing: 0.33em;
+    font-weight: 700;
+    text-decoration: none !important;
+}
+
+.agent-card .box .product-name{
+    margin-top: 13px !important;
+    margin-bottom: 13px !important;
+    letter-spacing: 0.33em;
+    font-weight: 300;
+    text-decoration: none !important;
+}

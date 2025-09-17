@@ -1,0 +1,61 @@
+.neu-sole {
+  background-color: #660033;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Vertically centers the content */
+  justify-content: center; 
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-family: "Barlow", sans-serif;
+  letter-spacing: 0.09em;
+}
+
+.neu-sole-box{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  justify-content: center; 
+  align-items: center;
+}
+
+/* Create three equal columns that floats next to each other */
+.neu-foot-column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 200px; 
+}
+
+/* Clear floats after the columns */
+.neu-foot-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.neu-foot-column-title{
+  font-family: "Barlow", sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  font-weight: 300;
+}
+
+.neu-foot-links{
+  font-family: "Barlow", sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  font-weight: 400;
+}
+
+
+@media screen and (max-width: 600px) {
+  .neu-foot-column {
+    width: 100%;
+  }
+
+  footer{
+    position: relative;
+  }
+}
