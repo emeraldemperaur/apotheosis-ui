@@ -5,7 +5,7 @@
 
 Apotheosis UX promotes stable, reliable, and vibe-consistent user interfaces, making it the perfect foundation for developers building intelligent, immersive, and forward-looking applications.</p>
 
-## Private Repository (Access available upon request) 🔐
+## Private Monorepository (Access available upon request) 🔐
 <a href="https://www.github.com/emeraldemperaur/apotheosis-ux" target="_blank">Apotheosis UX Repository</a>
 
 ## Quick Start
