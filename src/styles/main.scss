@@ -332,12 +332,13 @@ button {
 
 .title-box{
   margin-top: 105px !important;
-  width: 100vw;
+  width: 100%;
+  //box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.3);
 }
 
 .page-title{
   margin-left: 23px;
-  margin-bottom: 23px;
+  margin-bottom: 0px;
   text-align: left;
   font-family: 'Barlow';
   font-size: 26px;
@@ -345,4 +346,37 @@ button {
   font-weight: 600;
   text-transform: uppercase;
   color: #4f4f4f;
+}
+
+.install-heading{
+    font-family: 'Barlow';
+    font-weight: 700;
+    font-size: 23px;
+    text-align: left;
+    margin-top: 33px;
+    margin-left: 23px;
+    color: #666;
+    letter-spacing: 0.09em;
+}
+
+.install-subheading{
+    font-family: 'Barlow';
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0.09em;
+    text-align: left;
+    margin-top: 13px;
+    margin-left: 23px;
+    color: #666;
+}
+
+.install-text{
+    font-family: 'Barlow';
+    font-weight: 400;
+    font-size: 19px;
+    letter-spacing: 0.09em;
+    text-align: left;
+    margin-top: 13px;
+    margin-left: 23px;
+    color: #666;
 }

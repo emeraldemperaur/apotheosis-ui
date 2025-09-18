@@ -12,9 +12,11 @@
   "dependencies": {
     "@radix-ui/themes": "^3.2.1",
     "luxon": "^3.7.2",
+    "prismjs": "^1.30.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.1",
+    "react-syntax-highlighter": "^15.6.6",
     "sass": "^1.92.1"
   },
   "devDependencies": {
