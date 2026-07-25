@@ -14,6 +14,7 @@ import AgenticAI from './pages/agenticAIView';
 import Pantheon from './pages/pantheonView';
 import NavigationMenu from "./components/navMenu";
 import NeuFooter from "./components/neuFooter";
+import ApotheosisMCP from "./pages/mcpServerView";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
         <Route path='faqs' element={<FAQs/>}/>
         <Route path='ai-components' element={<AIComponents/>}/>
         <Route path='neu-components' element={<NeuComponents/>}/>
+        <Route path='apotheosis-mcp' element={<ApotheosisMCP/>}/>
         <Route path='agentic-ai' element={<AgenticAI/>}/>
         <Route path='pantheon' element={<Pantheon/>}/>
       </Routes>

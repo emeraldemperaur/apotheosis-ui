@@ -26,9 +26,11 @@ const NeuFoot = () => {
             <div className="neu-foot-column">
                 <a className='neu-foot-column-title'>Technologies</a>
                 <ul>
-                    <li><a href='https://www.replit.com' target='_blank' className='neu-foot-links'>Replit</a></li>
+                    <li><a href='https://cursor.com/home' target='_blank' className='neu-foot-links'>Cursor</a></li>
                     <li><a href='https://www.windsurf.com' target='_blank' className='neu-foot-links'>Windsurf</a></li>
                     <li><a href='https://www.devin.ai/' target='_blank' className='neu-foot-links'>Cognition</a></li>
+                    <li><a href='https://www.replit.com' target='_blank' className='neu-foot-links'>Replit</a></li>
+
                 </ul>
             </div>
         </div>

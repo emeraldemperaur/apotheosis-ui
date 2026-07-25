@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom';
 import replitLogo from '../assets/replit-logo.png';
 import windsurfLogo from '../assets/windsurf-logo.png';
 import cognitionAILogo from '../assets/cognitionai-logo.png';
-import n8nLogo from '../assets/n8n-logo.png';
+import spaceXAILogo from '../assets/spacexai-logo-black.png';
+
 
 
 const AgenticRibbon = () => {
@@ -14,7 +15,7 @@ const AgenticRibbon = () => {
             <p style={{textDecoration: 'none !important'}}>Interested in unlocking the potential of Agentic AI? <NavLink to='agentic-ai' style={{textDecoration: 'unset !important'}}>Learn more</NavLink></p>
             <div className="agentic-container">
                 <div className="agentic-item">
-                    <AgenticCard imgSrc={replitLogo} agentName='Replit' productName='Agent3' url='https://www.replit.com/'/>
+                    <AgenticCard imgSrc={spaceXAILogo} agentName='SpaceXAI' productName='Cursor' url='https://cursor.com/home'/>
                 </div>
                 <div className="agentic-item">
                     <AgenticCard imgSrc={windsurfLogo} agentName='Windsurf' productName='Cascade' url='https://www.windsurf.com/cascade'/>
@@ -23,7 +24,7 @@ const AgenticRibbon = () => {
                     <AgenticCard imgSrc={cognitionAILogo} agentName='Cognition' productName='Devin' url='https://www.devin.ai/'/>
                 </div>
                 <div className="agentic-item">
-                    <AgenticCard imgSrc={n8nLogo} agentName='N8N' productName='JavaScript/Python' url='https://www.n8n.io/'/>
+                    <AgenticCard imgSrc={replitLogo} agentName='Replit' productName='Agent3' url='https://www.replit.com/'/>
                 </div>
             </div>
         </div>

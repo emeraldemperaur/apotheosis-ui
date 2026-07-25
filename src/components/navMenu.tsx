@@ -203,6 +203,12 @@ const NavigationMenu = () => {
                         </div>
                     </li>
                     <li>
+                        <NavLink style={({ isActive }) => isActive ? { color: '#660033'} : {}} to="apotheosis-mcp">
+                         <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="apotheosis-mcp">
+                               Apotheosis MCP
+                        </button></NavLink>
+                    </li>
+                    <li>
                         <NavLink style={({ isActive }) => isActive ? { color: '#660033'} : {}} to="raison-detre">
                          <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="raison-detre">
                                Raison D'être
