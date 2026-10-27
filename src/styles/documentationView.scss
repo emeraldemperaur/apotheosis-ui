@@ -1,0 +1,118 @@
+.docs-page-container {
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 120px 24px 160px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.docs-hero-section {
+  text-align: center;
+  
+  .docs-lead-text {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 24px auto 0 auto;
+    font-weight: 400;
+    max-width: 800px;
+  }
+}
+
+.docs-embed-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.embed-window {
+  width: 100%;
+  background: var(--glass-bg);
+  border: var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  transform: translateZ(0);
+
+  &:hover {
+    border-color: var(--primary-accent);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(122, 115, 255, 0.1) inset;
+  }
+
+  .window-header {
+    height: 48px;
+    background: rgba(15, 15, 20, 0.05); /* Subtle contrast against the glass */
+    border-bottom: var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+
+    .window-controls {
+      display: flex;
+      gap: 8px;
+      width: 120px; 
+
+      .dot {
+        width: 12px; height: 12px; border-radius: 50%;
+        &.r { background: #ff5f56; }
+        &.y { background: #ffbd2e; }
+        &.g { background: #27c93f; }
+      }
+    }
+    
+    .window-title {
+      font-size: 0.85rem;
+      font-family: monospace;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .window-actions {
+      display: flex;
+      justify-content: flex-end;
+      width: 120px;
+
+      .external-link {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        &:hover {
+          color: #800020;
+        }
+      }
+    }
+  }
+
+  .embed-content {
+    flex: 1;
+    width: 100%;
+    min-height: 85vh; 
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    > div {
+      border-radius: 0 !important;
+      border: none !important;
+    }
+  }
+}

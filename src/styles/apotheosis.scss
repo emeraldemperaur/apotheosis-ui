@@ -1,0 +1,354 @@
+/* =========================================
+   APOTHEOSIS SYSTEM PAGE ROOT & PARALLAX
+========================================= */
+.apotheosis-system-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; 
+  background-color: var(--bg-base);
+  box-sizing: border-box;
+  
+  /* Theme Variables */
+  &.light-mode {
+    --bg-base: #f9fafb;
+    --text-main: #000000;
+    --text-muted: #4b5563;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --scrollbar-thumb: #000000;
+    --scrollbar-track: rgba(0, 0, 0, 0.05);
+  }
+
+  &.dark-mode {
+    --bg-base: #0a0a0c;
+    --text-main: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.6);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --scrollbar-thumb: #800020;
+    --scrollbar-track: rgba(255, 255, 255, 0.05);
+  }
+
+  .fixed-ambient-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* 
+     CSS 3D Parallax Mechanics 
+  */
+  .parallax-wrapper {
+    position: absolute;
+    inset: 0; 
+    perspective: 1px;
+    transform-style: preserve-3d;
+    overflow-x: hidden; 
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    z-index: 1;
+
+    /* Firefox Custom Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+    
+    /* WebKit Custom Scrollbar */
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--scrollbar-thumb);
+      border-radius: 10px;
+      border: 2px solid transparent; 
+      background-clip: padding-box;
+    }
+  }
+}
+
+/* =========================================
+   HERO SECTION (Vercel Style)
+========================================= */
+.sys-hero-section {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 60px;
+  transform: translateZ(0); 
+  z-index: 2;
+
+  .sys-hero-layout {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 64px;
+    box-sizing: border-box;
+
+    @media (max-width: 968px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 40px;
+    }
+
+    .sys-hero-left {
+      flex: 1.2;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .code-badge {
+        display: inline-block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: clamp(2rem, 4vw, 3rem);
+        color: var(--text-main);
+        padding: 12px 24px;
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        width: fit-content;
+      }
+
+      .hero-headline {
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        font-weight: 500;
+        color: var(--text-main);
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+        margin: 0;
+      }
+    }
+
+    .sys-hero-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+
+      .hero-desc {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .btn-get-started {
+          background: var(--text-main);
+          color: var(--bg-base);
+          border: none;
+          padding: 12px 24px;
+          border-radius: 99px;
+          font-weight: 600;
+          font-size: 1rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          transition: transform 0.2s ease;
+          &:hover { transform: scale(1.05); }
+        }
+
+        .npm-install-box {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          background: rgba(0, 0, 0, 0.3);
+          border: 1px solid var(--glass-border);
+          padding: 12px 20px;
+          border-radius: 99px;
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 0.9rem;
+          color: var(--text-main);
+          
+          span { color: #800020; }
+          .copy-icon { color: var(--text-muted); cursor: pointer; transition: color 0.2s; &:hover { color: var(--text-main); } }
+        }
+      }
+    }
+  }
+}
+
+/* =========================================
+   NAVIGATION RIBBON
+========================================= */
+.tenet-ribbon {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 16px 0;
+  transform: translateZ(0); 
+
+  .ribbon-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 0 24px;
+
+    .ribbon-node {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+
+      i { font-size: 1.5rem; transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
+      span { font-size: 0.95rem; font-weight: 600; letter-spacing: 0.05em; }
+
+      &:hover {
+        color: #800020;
+        i { transform: translateY(-3px) scale(1.1); }
+      }
+    }
+  }
+}
+
+/* =========================================
+   PARALLAX LAYERS & GLASS PANELS
+========================================= */
+.parallax-bg-layer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  z-index: -1;
+  transform: translateZ(-1px) scale(2);
+  pointer-events: none;
+  width: 100%;
+  overflow: hidden;
+
+  .parallax-bg-text {
+    font-size: 25vw;
+    font-weight: 900;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+}
+
+.parallax-fg-layer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 40px 24px;
+  transform: translateZ(0); 
+  width: 100%;
+  box-sizing: border-box;
+
+  .tenet-glass-panel {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    padding: 48px;
+    border-radius: 24px;
+    
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+
+    &.is-interacting {
+      transition: transform 0.1s ease-out, box-shadow 0.2s ease;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+
+    @media (hover: none) {
+      &.is-interacting { transform: none !important; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.05); }
+    }
+    
+    .tenet-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 32px;
+
+      .tenet-icon-wrapper {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        background: rgba(128, 0, 32, 0.1);
+        border: 1px solid rgba(128, 0, 32, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #800020;
+        font-size: 2rem;
+      }
+
+      .tenet-titles {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .tenet-tagline { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #800020; margin: 0; }
+        .tenet-title { font-size: 2.5rem; font-weight: 600; color: var(--text-main); margin: 0; letter-spacing: -0.03em; }
+      }
+    }
+
+    .tenet-description {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin: 0;
+      text-align: justify;
+    }
+
+    .glass-border {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      border: 1px solid var(--glass-border);
+      pointer-events: none;
+      mask-image: linear-gradient(145deg, black 0%, transparent 100%);
+      -webkit-mask-image: linear-gradient(145deg, black 0%, transparent 100%);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .apotheosis-system-page .parallax-wrapper {
+    perspective: none;
+    transform-style: flat;
+  }
+  .parallax-bg-layer {
+    transform: none;
+    opacity: 0.5;
+  }
+}

@@ -1,51 +1,58 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import '../styles/agenticRibbon.scss';
 import { NavLink } from 'react-router-dom';
-import replitLogo from '../assets/replit-logo.png';
-import windsurfLogo from '../assets/windsurf-logo.png';
-import cognitionAILogo from '../assets/cognitionai-logo.png';
-import spaceXAILogo from '../assets/spacexai-logo-black.png';
+import replitLogo from '../assets/replit-icon.png';
+import windsurfLogo from '../assets/windsurf-light-icon.png';
+import antigravityLogo from '../assets/antigravity-icon.png';
+import cursorLogo from '../assets/cursor-icon.png';
+import claudeLogo from '../assets/claude-icon.png';
+import spaceXLightLogo from '../assets/grokbot-logo.png';
+import spaceXDarkLogo from '../assets/spacex-light-icon.png';
 
 
-
-const AgenticRibbon = () => {
+const AgenticRibbon = ({ darkMode }: { darkMode: boolean }) => {
     return(
-    <>
-        <div className='agentic-card'>
-            <p style={{textDecoration: 'none !important'}}>Interested in unlocking the potential of Agentic AI? <NavLink to='agentic-ai' style={{textDecoration: 'unset !important'}}>Learn more</NavLink></p>
-            <div className="agentic-container">
-                <div className="agentic-item">
-                    <AgenticCard imgSrc={spaceXAILogo} agentName='SpaceXAI' productName='Cursor' url='https://cursor.com/home'/>
-                </div>
-                <div className="agentic-item">
-                    <AgenticCard imgSrc={windsurfLogo} agentName='Windsurf' productName='Cascade' url='https://www.windsurf.com/cascade'/>
-                </div>
-                <div className="agentic-item">
-                    <AgenticCard imgSrc={cognitionAILogo} agentName='Cognition' productName='Devin' url='https://www.devin.ai/'/>
-                </div>
-                <div className="agentic-item">
-                    <AgenticCard imgSrc={replitLogo} agentName='Replit' productName='Agent3' url='https://www.replit.com/'/>
-                </div>
+        <section className='agentic-ribbon-section'>
+            <div className="agentic-header">
+                <p>
+                    Interested in unlocking the potential of Agentic AI?{' '}
+                    <NavLink to='agentic-ai' className="learn-more-link">Learn more <span>→</span></NavLink>
+                </p>
             </div>
-        </div>
-    </>
+            
+            <div className="agentic-container">
+                <AgenticCard imgSrc={cursorLogo} agentName='SpaceXSI' productName='Cursor' url='https://cursor.com/home'/>
+                <AgenticCard imgSrc={darkMode ? windsurfLogo : windsurfLogo} agentName='Windsurf' productName='Cascade' url='https://www.windsurf.com/cascade'/>
+                <AgenticCard imgSrc={antigravityLogo} agentName='Google' productName='Antigravity' url='https://antigravity.google/'/>
+                <AgenticCard imgSrc={replitLogo} agentName='Replit' productName='Agent3' url='https://www.replit.com/'/>
+                <AgenticCard imgSrc={darkMode ? spaceXLightLogo : spaceXDarkLogo} agentName='SpaceX' productName='Grok Build' url='https://x.ai/build'/>
+                <AgenticCard imgSrc={claudeLogo} agentName='Anthropic' productName='Claude' url='https://claude.ai/'/>
+            </div>
+        </section>
     )
-
 }
 
-const AgenticCard = ({ imgSrc, agentName, productName, url } : {imgSrc: any, agentName: string, productName: string, url: string}) => {
+interface AgenticCardProps {
+    imgSrc: string;
+    agentName: string;
+    productName: string;
+    url: string;
+}
+
+const AgenticCard = ({ imgSrc, agentName, productName, url }: AgenticCardProps) => {
     return(
-    <>
-        <NavLink to={url} target='_blank'>
-        <div className='agent-card'>
-            <div className='box'>
-                <img style={{height: '100px', width: '100px'}} src={imgSrc}/>
-                <p className='agent-name'>{agentName}</p>
-                <p className='product-name'>{productName}</p>
+        <NavLink to={url} target='_blank' rel="noreferrer" className='agent-card-link'>
+            <div className='agent-card'>
+                <div className='card-content'>
+                    <div className="img-wrapper">
+                        <img src={imgSrc} alt={`${agentName} logo`} className="agent-logo" />
+                    </div>
+                    <div className="text-wrapper">
+                        <p className='agent-name'>{agentName}</p>
+                        <p className='product-name'>{productName}</p>
+                    </div>
+                </div>
             </div>
-        </div>
         </NavLink>
-    </>
     )
 }
 

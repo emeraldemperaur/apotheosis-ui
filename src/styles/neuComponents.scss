@@ -1,0 +1,224 @@
+/* =========================================
+   NEU COMPONENTS PAGE ROOT
+========================================= */
+.neu-components-page {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  
+  /* Shared Base Theme Variables */
+  &.light-mode {
+    --bg-base: #ffffff;
+    --text-base: #111827;
+    --text-muted-base: #4b5563;
+    
+    --bg-alt: #000000;
+    --text-alt: #ffffff;
+    --text-muted-alt: #9ca3af;
+  }
+
+  &.dark-mode {
+    --bg-base: #111827;
+    --text-base: #ffffff;
+    --text-muted-base: #9ca3af;
+    
+    --bg-alt: #800020; /* Deep Burgundy for dark mode alternative sections */
+    --text-alt: #ffffff;
+    --text-muted-alt: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* =========================================
+   HERO & RIBBON
+========================================= */
+.hero-section {
+  position: relative;
+  padding: 160px 24px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 60vh;
+  
+  .ambient-background, .hero-canvas-container {
+    position: absolute; inset: 0; z-index: 0;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2; max-width: 800px;
+    
+    .hero-badge {
+      display: inline-block; padding: 6px 16px; border-radius: 99px;
+      font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+      background: rgba(128, 0, 32, 0.1); border: 1px solid rgba(128, 0, 32, 0.3); color: #800020;
+      margin-bottom: 24px;
+    }
+
+    .hero-title { font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 700; margin: 0 0 24px 0; letter-spacing: -0.04em; color: var(--text-base); }
+    .hero-description { font-size: 1.25rem; line-height: 1.6; color: var(--text-muted-base); }
+  }
+}
+
+.icon-ribbon {
+  position: sticky;
+  top: 60px; /* Adjust based on your global nav height */
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(128, 128, 128, 0.1);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+  padding: 16px 0;
+
+  .ribbon-container {
+    max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; padding: 0 24px;
+    
+    .ribbon-item {
+      display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--text-muted-base); transition: all 0.3s ease;
+      
+      i { font-size: 1.5rem; transition: transform 0.3s ease; }
+      span { font-size: 0.9rem; font-weight: 600; }
+      
+      &:hover {
+        color: #800020;
+        i { transform: scale(1.2); }
+      }
+    }
+  }
+}
+
+/* =========================================
+   ALTERNATING CATEGORY SECTIONS
+========================================= */
+.categories-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .category-section {
+    position: relative;
+    padding: 120px 24px;
+    margin-top: -60px; /* Pull up to overlap and allow clip-path to cut into the section above */
+    
+    /* The Geometric Cutout Mask matching Vercel UI */
+    clip-path: polygon(0 0, 15% 0, 20% 60px, 80% 60px, 85% 0, 100% 0, 100% 100%, 0 100%);
+    
+    /* Add top padding to account for the clipped area */
+    padding-top: 140px;
+
+    &:first-child {
+      margin-top: 0;
+      clip-path: none;
+      padding-top: 80px;
+    }
+
+    .section-content {
+      max-width: 1200px; margin: 0 auto;
+      
+      .section-header {
+        text-align: center; margin-bottom: 64px;
+        h2 { font-size: 2.5rem; font-weight: 700; margin: 0 0 16px 0; }
+        p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+      }
+    }
+
+    /* Apply themes */
+    &.theme-base {
+      background-color: var(--bg-base);
+      h2 { color: var(--text-base); }
+      p { color: var(--text-muted-base); }
+    }
+
+    &.theme-alt {
+      background-color: var(--bg-alt);
+      h2 { color: var(--text-alt); }
+      p { color: var(--text-muted-alt); }
+    }
+  }
+}
+
+/* =========================================
+   GLASSMORPHIC SHOWCASE GRIDS
+========================================= */
+.showcase-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px;
+
+  .neu-glass-card {
+    position: relative; border-radius: 20px; display: flex; flex-direction: column;
+    background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .card-glass-panel {
+      padding: 32px; display: flex; flex-direction: column; height: 100%; z-index: 2; position: relative;
+
+      h3 { font-size: 1.4rem; font-weight: 600; margin: 0 0 12px 0; color: inherit; }
+      p { font-size: 1rem; line-height: 1.5; margin: 0 0 32px 0; opacity: 0.8; flex-grow: 1; color: inherit; }
+
+      .mock-visual {
+        height: 140px; background: rgba(0,0,0,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center;
+        border: 1px solid rgba(255,255,255,0.05);
+        i { font-size: 4rem; opacity: 0.5; transition: transform 0.4s ease; }
+      }
+    }
+
+    &:hover .mock-visual i { transform: scale(1.1); opacity: 1; color: #800020; }
+
+    .card-border {
+      position: absolute; inset: 0; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
+      pointer-events: none; z-index: 3;
+      mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    }
+
+    .card-glow {
+      position: absolute; bottom: -20px; left: 15%; right: 15%; height: 30px;
+      background: rgba(128, 0, 32, 0.4); filter: blur(24px); border-radius: 50%; z-index: -1; animation: fadeGlow 0.4s ease forwards;
+    }
+  }
+}
+
+@keyframes fadeGlow {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   ENTERPRISE CTA COMPONENT
+========================================= */
+.enterprise-cta-section {
+  padding: 100px 24px; border-top: 1px solid rgba(255,255,255,0.05);
+
+  .cta-container {
+    max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 64px;
+    
+    @media (max-width: 968px) { flex-direction: column; align-items: flex-start; gap: 32px; }
+
+    .cta-left {
+      flex: 1;
+      .cta-heading { font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 600; color: #ffffff; line-height: 1.1; letter-spacing: -0.03em; margin: 0; }
+    }
+
+    .cta-right {
+      flex: 1; display: flex; flex-direction: column; gap: 32px; max-width: 500px;
+      
+      .cta-description { font-size: 1.1rem; line-height: 1.6; color: #9ca3af; margin: 0; }
+      
+      .cta-actions {
+        display: flex; gap: 16px; flex-wrap: wrap;
+        
+        button {
+          padding: 12px 24px; border-radius: 99px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+          
+          &.btn-primary { background: #ffffff; color: #000000; border: none; &:hover { background: #e5e7eb; } }
+          &.btn-secondary { background: transparent; color: #ffffff; border: 1px solid rgba(255,255,255,0.2); &:hover { background: rgba(255,255,255,0.05); } }
+        }
+      }
+    }
+  }
+}

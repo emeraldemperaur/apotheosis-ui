@@ -13,7 +13,7 @@ Access to the core source code is currently restricted.
 <a href="https://www.github.com/emeraldemperaur/apotheosis-ux" target="_blank">Apotheosis UX Repository</a>
 
 ## Quick Start
-<p align='justify'>Read the <a href="#" target="_blank">official Apotheosis UX documentation</a> for comprehensive guides on neumorphic design system, React primitives, backend component templates and MCP server deployment.</p>
+<p align='justify'>Read the <a href="https://6a6577d6e5e62a5a0aa378c4-ywxuhnmbrr.chromatic.com/" target="_blank">official Apotheosis UX documentation</a> for comprehensive guides on neumorphic design system, React primitives, backend component templates and MCP server deployment.</p>
 
 ## Usage
 

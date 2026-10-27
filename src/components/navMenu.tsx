@@ -2,54 +2,89 @@ import '../styles/main.scss';
 import { NavLink } from 'react-router-dom';
 import terminalIcon from '../assets/console-icon.png';
 import aiChipIcon from '../assets/aichip-icon.png';
-import agenticIcon from '../assets/agentic-icon.png';
+import aiChipIconDark from '../assets/ai-chip-icon-dark.png';
+import aiIcon from '../assets/cpu-icon.png';
 import cubeIcon from '../assets/neu-components-icon.png';
 import mediaIcon from '../assets/media-icon.png';
+import mediaIconDark from '../assets/media-icon-dark.png';
 import controlsIcon from '../assets/touch-control-icon.png';
-import mcpIcon from '../assets/mcp-icon.png';
-import web3Icon from '../assets/ethereum-icon.png';
+import controlsIconDark from '../assets/touch-control-icon-dark.png';
+import dataVisualIcon from '../assets/data-vizual-icon.png';
+import dataVisualIconDark from '../assets/data-visual-icon-dark.png';
+import authIcon from '../assets/biometric-auth-icon.png';
+import authIconDark from '../assets/biometric-auth-icon-dark.png';
+import designIcon from '../assets/paintbrush-icon.png';
 import { useEffect, useRef, useState } from 'react';
+import TesseractIcon from '../components/TesseractIcon';
 
+interface NavigationMenuProps {
+    isDarkMode: boolean;
+    toggleTheme: () => void;
+}
 
-
-
-
-const NavigationMenu = () => {
+const NavigationMenu = ({ isDarkMode, toggleTheme }: NavigationMenuProps) => {
     const [isDocumentation, setIsDocumentation] = useState<[boolean, string]>([false, '']);
     const [isLaboratory, setIsLaboratory] = useState<[boolean, string]>([false, '']);
+    
+    // 1. Added missing state for mobile menu tracking
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+    
     const documentationRef = useRef<HTMLDivElement | null>(null);
     const laboratoryRef = useRef<HTMLDivElement | null>(null);
+    
+    // 2. Added headerRef to properly detect clicks outside the entire navigation area
+    const headerRef = useRef<HTMLElement | null>(null);
 
     const toggleDocumentation = () => {
         if (isLaboratory[0]) setIsLaboratory([false, '']);
-        setIsDocumentation([isDocumentation[0] ? false : true, isDocumentation[1] == 'active' ? '' : 'active']);
+        setIsDocumentation([!isDocumentation[0], isDocumentation[1] === 'active' ? '' : 'active']);
     }
 
     const toggleLaboratory = () => {
         if (isDocumentation[0]) setIsDocumentation([false, '']);
-        setIsLaboratory([isLaboratory[0] ? false : true, isLaboratory[1] == 'active' ? '' : 'active']);
+        setIsLaboratory([!isLaboratory[0], isLaboratory[1] === 'active' ? '' : 'active']);
     }
 
-    const closeDropDowns = () => { setIsDocumentation([false, '']); setIsLaboratory([false, '']); }
+    const closeDropDowns = () => { 
+        setIsDocumentation([false, '']); 
+        setIsLaboratory([false, '']); 
+        // 3. Ensure mobile menu closes when a link is clicked
+        setIsMobileMenuOpen(false); 
+    }
 
     const showDropDown = (index: number) => { 
-        if(index == 1){ 
+        if(index === 1){ 
             setIsLaboratory([false, '']);
             setIsDocumentation([true, 'active']);
         }
-        else if (index == 2){ 
+        else if (index === 2){ 
             setIsDocumentation([false, '']);
             setIsLaboratory([true, 'active']);
         }
      }
 
-    const toggleHamburger = () => { document.querySelector(".menu")?.classList.toggle("show"); }
+    // 4. Converted from manual DOM manipulation to React state
+    const toggleHamburger = () => { 
+        setIsMobileMenuOpen(!isMobileMenuOpen); 
+    }
 
+    // 5. Updated to check the entire header boundary to prevent accidental mobile menu collapses
     const handleExoClick = (event: MouseEvent) => {
-        if (documentationRef.current && !documentationRef.current.contains(event.target as Node)) {
+        if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
             closeDropDowns();
         }
     };
+
+    // Apply global theme classes to the body based on the injected prop
+    useEffect(() => {
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            document.body.classList.remove('light-mode');
+        } else {
+            document.body.classList.add('light-mode');
+            document.body.classList.remove('dark-mode');
+        }
+    }, [isDarkMode]);
 
     useEffect(() => {
         document.addEventListener("mousedown", handleExoClick);
@@ -62,14 +97,20 @@ const NavigationMenu = () => {
 
     return(
         <>        
-        
-        <header style={{position: 'fixed', zIndex: 4, width: '100%', background: '#ffffff'}} id="nav-menu" aria-label="navigation bar">
+        <header ref={headerRef} style={{position: 'fixed', zIndex: 4, width: '100%'}} className={isDarkMode ? "nav-glass-dark" : "nav-glass-light"} id="nav-menu" aria-label="navigation bar">
             <div className="ux-container">
                 <div className="nav-start">
-                <NavLink className="logo" to="/">
+                {/* Flex layout added here to align the 3D Icon and Logo Text */}
+                <NavLink className="logo" to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
+                    <TesseractIcon 
+                        width={40} 
+                        height={40} 
+                        color={isDarkMode ? '#ffffff' : '#09090b'} 
+                        speed={1} 
+                    />
                     <div className="menu-logo">Apotheosis UX</div> 
                 </NavLink>
-                <nav className="ux-menu">
+                <nav className={`ux-menu ${isMobileMenuOpen ? 'show' : ''}`}>
                     <ul className="ux-menu-bar">
                     <li>
                         <NavLink style={({ isActive }) => isActive ? { color: '#660033'} : {}} to="documentation">
@@ -90,7 +131,7 @@ const NavigationMenu = () => {
                         <ul role="menu">
                             <li role="menuitem">
                             <NavLink className="ux-dropdown-link" to="getting-started" onClick={() => closeDropDowns()}>
-                                <img style={{width: '40px', height: '40px'}} src={terminalIcon} className="icon" />
+                                <img style={{width: '40px', height: '40px'}} src={terminalIcon} className="icon" alt=""/>
                                 <div>
                                 <span className="ux-dropdown-link-title">Getting Started</span>
                                 <p>Elevate your UI with Neumorphic components</p>
@@ -99,7 +140,7 @@ const NavigationMenu = () => {
                             </li>
                             <li role="menuitem">
                             <NavLink className="ux-dropdown-link" to="ai-components" onClick={() => closeDropDowns()}>
-                                <img style={{width: '40px', height: '40px'}} src={aiChipIcon} className="icon" />
+                                <img style={{width: '40px', height: '40px'}} src={aiIcon} className="icon" alt=""/>
                                 <div>
                                 <span className="ux-dropdown-link-title">AI Components</span>
                                 <p>Building blocks for AI/RAG user experiences</p>
@@ -108,7 +149,7 @@ const NavigationMenu = () => {
                             </li>
                             <li role="menuitem">
                             <NavLink className="ux-dropdown-link" to="neu-components" onClick={() => closeDropDowns()}>
-                                <img style={{width: '40px', height: '40px'}} src={cubeIcon} className="icon" />
+                                <img style={{width: '40px', height: '40px'}} src={cubeIcon} className="icon" alt=""/>
                                 <div>
                                 <span className="ux-dropdown-link-title">Neucorporeal Components</span>
                                 <p>Skeuomorphic components for elevated user experiences</p>
@@ -116,10 +157,10 @@ const NavigationMenu = () => {
                             </NavLink>
                             </li>
                             <li role="menuitem">
-                            <NavLink className="ux-dropdown-link" to="agentic-ai" onClick={() => closeDropDowns()}>
-                                <img style={{width: '40px', height: '40px'}} src={agenticIcon} className="icon" />
+                            <NavLink className="ux-dropdown-link" to="neu-design-system" onClick={() => closeDropDowns()}>
+                                <img style={{width: '40px', height: '40px'}} src={designIcon} className="icon" alt=""/>
                                 <div>
-                                <span className="ux-dropdown-link-title">Model Context Protocol & AI Agents</span>
+                                <span className="ux-dropdown-link-title">Apotheosis Design System</span>
                                 <p>Reconnoitre and develop interfaces with Agentic AIs</p>
                                 </div>
                             </NavLink>
@@ -132,32 +173,32 @@ const NavigationMenu = () => {
                             </li>
                             <li role="menuitem">
                             <NavLink className="ux-dropdown-link" to="ai-components" onClick={() => closeDropDowns()}>
-                                <img style={{width: '34px', height: '34px'}} src={aiChipIcon} />
+                                <img style={{width: '34px', height: '34px'}} src={isDarkMode ? aiChipIconDark : aiChipIcon} alt=""/>
                                 AI/RAG
                             </NavLink>
                             </li>
                             <li role="menuitem">
                             <NavLink className="ux-dropdown-link" to="neu-components#ui-controls" onClick={() => closeDropDowns()}>
-                                <img style={{width: '30px', height: '30px'}} src={controlsIcon} />
+                                <img style={{width: '30px', height: '30px'}} src={isDarkMode ? controlsIconDark : controlsIcon} alt=""/>
                                 UI Controls
                             </NavLink>
                             </li>
                             <li role="menuitem">
                             <NavLink className="ux-dropdown-link" to="neu-components#multimedia" onClick={() => closeDropDowns()}>
-                                <img style={{width: '30px', height: '30px'}} src={mediaIcon} />
+                                <img style={{width: '30px', height: '30px'}} src={isDarkMode ? mediaIconDark : mediaIcon} alt=""/>
                                 Multimedia
                             </NavLink>
                             </li>
                             <li role="menuitem">
-                            <NavLink className="ux-dropdown-link" to="agentic-ai" onClick={() => closeDropDowns()}>
-                                <img style={{width: '25px', height: '25px'}} src={mcpIcon} />
-                                Model Context Protocol
+                            <NavLink className="ux-dropdown-link" to="neu-components#data" onClick={() => closeDropDowns()}>
+                                <img style={{width: '25px', height: '25px'}} src={isDarkMode ? dataVisualIconDark : dataVisualIcon} alt=""/>
+                                Data
                             </NavLink>
                             </li>
                             <li role="menuitem">
-                            <NavLink className="ux-dropdown-link" to="neu-components#web3" onClick={() => closeDropDowns()}>
-                                <img style={{width: '25px', height: '25px'}} src={web3Icon} />
-                                Blockchain (Web3)
+                            <NavLink className="ux-dropdown-link" to="neu-components#authentication" onClick={() => closeDropDowns()}>
+                                <img style={{width: '25px', height: '25px'}} src={isDarkMode ? authIconDark : authIcon} alt=""/>
+                                Authentication&nbsp;
                             </NavLink>
                             </li>
                         </ul>
@@ -196,21 +237,18 @@ const NavigationMenu = () => {
                             <li role="menuitem">
                             <NavLink className="ux-dropdown-link" to="pantheon" onClick={() => closeDropDowns()}>Pantheon Playground</NavLink>
                             </li>
-                            <li role="menuitem">
-                            <a className="ux-dropdown-link" href="https://www.neumorphism.io" target='_blank'>Neumorphism.io</a>
-                            </li>
                         </ul>
                         </div>
                     </li>
                     <li>
                         <NavLink style={({ isActive }) => isActive ? { color: '#660033'} : {}} to="apotheosis-mcp">
-                         <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="apotheosis-mcp">
+                         <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="apotheosis-mcp" onClick={() => closeDropDowns()}>
                                Apotheosis MCP
                         </button></NavLink>
                     </li>
                     <li>
                         <NavLink style={({ isActive }) => isActive ? { color: '#660033'} : {}} to="raison-detre">
-                         <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="raison-detre">
+                         <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="raison-detre" onClick={() => closeDropDowns()}>
                                Raison D'être
                         </button></NavLink>
                     </li>
@@ -222,11 +260,12 @@ const NavigationMenu = () => {
                 </div>
                 <div className="nav-end">
                 <div className="right-container">
-                    <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="github">
-                               <a href="https://www.github.com/emeraldemperaur/apotheosis-ui" target='_blank'><i className="ux-menu-icons fa-brands fa-github"></i></a>
+                    <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="github" onClick={() => closeDropDowns()}>
+                               <a href="https://www.github.com/emeraldemperaur/apotheosis-ui" target='_blank' rel="noreferrer"><i className="ux-menu-icons fa-brands fa-github"></i></a>
                     </button>
-                    <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="github">
-                    <a><i className="ux-menu-icons fa-regular fa-moon"></i></a>
+                    {/* Theme Toggle Button utilizing injected props */}
+                    <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="toggle theme" onClick={() => { toggleTheme(); closeDropDowns(); }}>
+                    <a style={{ cursor: 'pointer' }}><i className={`ux-menu-icons fa-regular ${isDarkMode ? 'fa-lightbulb' : 'fa-moon'}`}></i></a>
                     </button>
                 </div>
 

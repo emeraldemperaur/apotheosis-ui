@@ -1,57 +1,206 @@
-.cta-container {
+.cta-enterprise-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  /* Add default opacity for the scroll reveal hook */
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.flipped {
+    flex-direction: row-reverse;
+  }
+
+  @media (max-width: 1024px) {
+    gap: 40px;
+  }
+
+  @media (max-width: 968px) {
+    flex-direction: column !important;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .cta-text-column {
+    flex: 1;
+    max-width: 500px;
+
+    @media (max-width: 968px) {
       display: flex;
-      flex-wrap: wrap; /* Allows columns to wrap to the next line on smaller screens */
-      width: 100%;
-      margin-top: 33px;
-      margin-bottom: 33px;
+      flex-direction: column;
+      align-items: center;
+      max-width: 100%;
+    }
+  }
+
+  .subheading-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+
+    @media (max-width: 968px) {
+      justify-content: center;
     }
 
-.cta-column {
-      flex: 1; /* Each column takes up equal available space */
-      padding: 20px; /* Add some spacing */
-      box-sizing: border-box; /* Include padding in the element's total width/height */
-      color: #4f4f4f;
-}
+    .decorative-line {
+      width: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, #800020, transparent);
 
-.cta-heading{
-    text-align: left;
-    font-family: 'Barlow';
-    font-weight: 600;
-    font-size: 26px;
-    letter-spacing: 0.13em;
-}
-
-.cta-subheading{
-    text-align: left;
-    font-family: 'Barlow';
-    font-weight: 400;
-    font-size: 19px;
-    letter-spacing: 0.13em;
-    margin-top: 13px;
-}
-
-.cta-content{
-    text-align: justify;
-    margin-top: 13px;
-    font-family: 'Barlow';
-    font-weight: 300;
-    font-size: 18px;
-}
-
-.img-column {
-      padding: unset !important; /* Add some spacing */
-}    
-
-.text-column {
-      //padding: 20px !important; /* Add some spacing */
-      padding-top: 20px !important;
-      padding-left: 69px;
-      padding-right: 20px;
-      padding-bottom: 20px;
-}  
-
-@media (max-width: 768px) { /* Adjust breakpoint as needed */
-      .cta-column {
-        flex-basis: 100%; /* Columns take full width */
+      @media (max-width: 968px) {
+        display: none; 
       }
+    }
+    
+    .cta-subheading {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #800020;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .cta-heading {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    text-align: left;
+  }
+
+  .cta-content {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin: 0 0 40px 0;
+    text-align: justify;
+
+    @media (max-width: 968px) {
+      font-size: 1rem;
+      margin: 0 0 30px 0;
+      padding: 0 16px;
+    }
+  }
+
+  .cta-action {
+    display: flex;
+    
+    @media (max-width: 968px) {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  .cta-visual-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    perspective: 1000px; 
+  }
+
+  /* Modern Enterprise Neumorphism (Glass + Soft Light + 3D Tilt) */
+  .tactile-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 24px;
+    padding: 1px; // Space for the 1px gradient border
+    background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.01) 100%);
+    box-shadow: 
+      0 20px 40px -10px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.1);
+      
+    /* Default transition for resetting the tilt when mouse leaves */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-style: preserve-3d;
+
+    /* When the mouse is actively moving, shorten the transition so it tracks smoothly */
+    &.is-interacting {
+      transition: transform 0.1s ease-out;
+      
+      .tactile-shadow {
+        opacity: 0.8;
+        transform: translateZ(-30px) translateY(10px) scale(0.95);
+      }
+    }
+
+    @media (max-width: 968px) {
+      max-width: 100%;
+      margin-top: 20px;
+    }
+
+    /* Disable 3D tilt effects on touch devices */
+    @media (hover: none) {
+      &.is-interacting {
+        transform: none !important;
+      }
+    }
+
+    /* Dynamic Glare Layer */
+    .tactile-glare {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      pointer-events: none; /* Prevents glare from stealing mouse events */
+      z-index: 2; /* Sits above the glass panel */
+      transition: opacity 0.4s ease;
+      mix-blend-mode: overlay; 
+    }
+
+    .tactile-glass-panel {
+      position: relative;
+      border-radius: 23px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      padding: 16px;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      /* Prevent children from flattening out the 3D effect */
+      transform: translateZ(20px); 
+
+      .product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        display: block;
+        opacity: 0.9;
+        transition: opacity 0.3s ease;
+
+        &:hover { opacity: 1; }
+      }
+    }
+
+    /* Ambient base shadow mimicking light reflecting off the desk */
+    .tactile-shadow {
+      position: absolute;
+      bottom: -20px;
+      left: 10%;
+      right: 10%;
+      height: 20px;
+      background: var(--accent-glow);
+      filter: blur(20px);
+      border-radius: 50%;
+      opacity: 0.4;
+      transition: all 0.4s ease;
+      z-index: -1;
+      transform: translateZ(-30px); /* Push shadow behind the object */
+    }
+  }
+}
+
+/* Ensure the scroll reveal animation works */
+.fade-in-up {
+  opacity: 1;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
