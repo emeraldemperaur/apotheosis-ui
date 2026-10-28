@@ -224,10 +224,10 @@ const NavigationMenu = ({ isDarkMode, toggleTheme }: NavigationMenuProps) => {
                             <span className="ux-dropdown-link-title">Apotheosis Design System</span>
                             </li>
                             <li role="menuitem">
-                            <NavLink className="ux-dropdown-link" to="neu-laboratory#desktop" onClick={() => closeDropDowns()}>Desktop Deism</NavLink>
+                            <NavLink className="ux-dropdown-link" to="neu-laboratory#desktop-showcase" onClick={() => closeDropDowns()}>Desktop Deism</NavLink>
                             </li>
                             <li role="menuitem">
-                            <NavLink className="ux-dropdown-link" to="neu-laboratory#mobile" onClick={() => closeDropDowns()}>Mobile Múses</NavLink>
+                            <NavLink className="ux-dropdown-link" to="neu-laboratory#mobile-showcase" onClick={() => closeDropDowns()}>Mobile Múses</NavLink>
                             </li>
                         </ul>
                         <ul role="menu">

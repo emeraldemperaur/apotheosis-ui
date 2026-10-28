@@ -62,7 +62,7 @@ function App() {
             <Route path='ai-components' element={<AIComponents darkMode={isDarkMode}/>}/>
             <Route path='neu-components' element={<NeuComponents darkMode={isDarkMode}/>}/>
             <Route path='neu-design-system' element={<ApotheosisSystem darkMode={isDarkMode}/>}/>
-            <Route path='neu-laboratory' element={<NeuLaboratory/>}/>
+            <Route path='neu-laboratory' element={<NeuLaboratory darkMode={isDarkMode}/>}/>
             <Route path='raison-detre' element={<RaisonDetre/>}/>
             <Route path='getting-started' element={<GettingStarted darkMode={isDarkMode}/>}/>
             <Route path='faqs' element={<FAQs/>}/>

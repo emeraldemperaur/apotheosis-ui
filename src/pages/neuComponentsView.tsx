@@ -62,17 +62,6 @@ const categories = [
             { name: 'Biometric Gate', desc: 'WebAuthn prompt for sensitive actions.' },
             { name: 'Role Switcher', desc: 'RBAC context toggle for testing boundaries.' }
         ]
-    },
-    {
-        id: 'backend-blueprints',
-        title: 'Backend Blueprints',
-        icon: 'bx-server',
-        description: 'Scalable, event-driven backend architectures for orchestrating complex LLM pipelines and agentic state management.',
-        items: [
-            { name: 'State Synchronizer', desc: 'Real-time WebSocket state synchronization for distributed agents.' },
-            { name: 'Vector Pipeline', desc: 'Automated chunking and embedding ingestion workflows.' },
-            { name: 'Agentic Router', desc: 'Semantic routing layers for dynamic multi-agent orchestration.' }
-        ]
     }
 ];
 
