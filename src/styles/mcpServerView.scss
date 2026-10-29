@@ -1,0 +1,326 @@
+/* =========================================
+   MCP SERVER PAGE ROOT & VARIABLES
+========================================= */
+.mcp-server-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--bg-base);
+  box-sizing: border-box;
+
+  &.light-mode {
+    --bg-base: #f9fafb;
+    --text-main: #000000;
+    --text-muted: #4b5563;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-hover: rgba(255, 255, 255, 0.15);
+    --accent: #800020;
+    --grid-color: rgba(0, 0, 0, 0.03);
+    --ribbon-bg: rgba(0, 0, 0, 0.02);
+  }
+
+  &.dark-mode {
+    --bg-base: #0a0a0c;
+    --text-main: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.6);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-hover: rgba(255, 255, 255, 0.07);
+    --accent: #800020;
+    --grid-color: rgba(255, 255, 255, 0.02);
+    --ribbon-bg: rgba(255, 255, 255, 0.02);
+  }
+
+  .fixed-ambient-bg {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    
+    .grid-overlay {
+      position: absolute; inset: 0;
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+      mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+    }
+
+    .noise-overlay {
+      position: absolute; inset: 0;
+      background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.04"/%3E%3C/svg%3E');
+      mix-blend-mode: overlay;
+    }
+  }
+
+  .mcp-content-layer {
+    position: relative; z-index: 1;
+    max-width: 1200px; margin: 0 auto;
+    padding: 140px 24px 160px 24px;
+    display: flex; flex-direction: column; gap: 80px;
+  }
+}
+
+/* =========================================
+   HERO SECTION (Right-Aligned, Vercel Style)
+========================================= */
+.mcp-hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  width: 100%;
+
+  .dynamic-heading {
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+    color: var(--text-main);
+    margin: 0;
+
+    .rotating-text-wrapper {
+      display: inline-block;
+      background: var(--glass-bg);
+      padding: 4px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+      overflow: hidden;
+      vertical-align: bottom;
+      height: 1.3em; 
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      cursor: crosshair;
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease;
+      transform-style: preserve-3d;
+      
+      &.is-interacting {
+          box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+          transition: transform 0.1s ease-out, box-shadow 0.2s ease;
+      }
+    }
+
+    .rotating-text {
+      display: block; color: var(--accent); line-height: 1.1;
+    }
+
+    .animate-slide-up {
+      animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  }
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* =========================================
+   GLASSMORPHIC INTRO RIBBON
+========================================= */
+.mcp-intro-ribbon {
+  width: 100vw;
+  /* Breaks out of the 1200px container padding without causing horizontal scroll */
+  margin-left: calc(50% - 50vw); 
+  background: var(--ribbon-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 56px 0;
+  
+  .ribbon-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .intro-header {
+      display: flex; align-items: center; gap: 16px;
+      i { font-size: 2.5rem; color: var(--accent); }
+      h2 { font-size: 2rem; font-weight: 600; color: var(--text-main); margin: 0; letter-spacing: -0.03em; }
+    }
+
+    .intro-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 900px;
+    }
+
+    .mcp-server-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin: 0;
+      text-align: justify;
+    }
+  }
+}
+
+/* =========================================
+   FEATURES GRID SECTION
+========================================= */
+.mcp-features-section {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  .section-header {
+    text-align: left;
+    max-width: 700px;
+    h2 { font-size: 2.5rem; font-weight: 600; color: var(--text-main); margin: 0 0 16px 0; letter-spacing: -0.03em; }
+    p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 32px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .glass-feature-card {
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &.is-interacting {
+      transition: transform 0.1s ease-out, box-shadow 0.2s ease;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: rgba(128, 0, 32, 0.1);
+      border: 1px solid rgba(128, 0, 32, 0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 8px;
+      i { font-size: 1.75rem; color: var(--accent); }
+    }
+
+    h3 { font-size: 1.35rem; font-weight: 600; color: var(--text-main); margin: 0; letter-spacing: -0.02em; }
+    p { font-size: 1rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+    .glass-border {
+      position: absolute; inset: 0; border-radius: 20px;
+      border: 1px solid var(--glass-border); pointer-events: none;
+    }
+  }
+}
+
+/* =========================================
+   PRICING SECTION
+========================================= */
+.mcp-pricing-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+
+  .glass-pricing-card {
+    position: relative;
+    /* Adopts the ultra-sheer transparency used in the intro ribbon */
+    background: var(--ribbon-bg);
+    border-radius: 24px;
+    padding: 56px 40px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    text-align: center;
+    /* Widened from 500px to 650px for a more expansive, breathable layout */
+    max-width: 650px; 
+    width: 100%;
+    /* Softened the shadow slightly to complement the high transparency */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+    transform-style: preserve-3d;
+    box-sizing: border-box;
+
+    &.is-interacting {
+      transition: transform 0.1s ease-out, box-shadow 0.2s ease;
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(128, 0, 32, 0.15);
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    h2 { font-size: 2rem; color: var(--text-main); margin: 0 0 16px 0; font-weight: 600; letter-spacing: -0.03em; }
+    p { color: var(--text-muted); line-height: 1.6; margin: 0 0 32px 0; }
+
+    .pricing-cost {
+      display: flex; align-items: flex-start; justify-content: center; gap: 4px; margin-bottom: 8px;
+      .currency { font-size: 1.5rem; color: var(--text-muted); margin-top: 12px; }
+      .amount { font-size: 5rem; font-weight: 700; color: var(--text-main); line-height: 1; letter-spacing: -0.04em; }
+    }
+
+    .pricing-terms { font-size: 0.875rem; color: var(--text-muted); opacity: 0.8; margin-bottom: 40px; }
+
+    .pricing-action {
+      perspective: 1200px;
+      
+      .buy-btn {
+        position: relative;
+        display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-decoration: none; padding: 20px 32px; font-size: 1.125rem; border-radius: 100px; box-sizing: border-box;
+        
+        /* Glassmorphic Base */
+        background: var(--glass-bg); 
+        color: var(--text-main); 
+        font-weight: 600; 
+        border: 1px solid var(--glass-border);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+        
+        /* 3D Mechanics */
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+        transform-style: preserve-3d;
+        
+        i {
+          font-size: 1.25rem;
+          color: var(--accent);
+          transition: transform 0.3s ease;
+        }
+
+        &.is-interacting, &:hover { 
+          background: rgba(128, 0, 32, 0.15); /* Accent-tinted glass on hover */
+          border-color: rgba(128, 0, 32, 0.4);
+          box-shadow: 0 20px 40px rgba(128, 0, 32, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.1); 
+          
+          i {
+            transform: scale(1.1) translateX(2px) translateY(-2px);
+          }
+        }
+      }
+    }
+
+    .glass-border {
+      position: absolute; inset: 0; border-radius: 24px;
+      border: 1px solid var(--glass-border); pointer-events: none;
+    }
+  }
+}

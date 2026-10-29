@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import FallingSquares from '../components/FallingSquares';
 import EnterpriseCTA from '../components/EnterpriseCTA';
 import '../styles/neuComponents.scss';
+import FAButton from '../components/FAButton';
 
 interface NeuComponentsProps {
     darkMode: boolean;
@@ -62,6 +63,17 @@ const categories = [
             { name: 'Biometric Gate', desc: 'WebAuthn prompt for sensitive actions.' },
             { name: 'Role Switcher', desc: 'RBAC context toggle for testing boundaries.' }
         ]
+    },
+    {
+        id: 'backend',
+        title: 'Backend Templates',
+        icon: 'bx-server',
+        description: 'Secure, ephemeral credential injection components for Human-in-the-Loop workflows.',
+        items: [
+            { name: 'Ephemeral Vault', desc: 'Temporary secret input for API keys.' },
+            { name: 'Biometric Gate', desc: 'WebAuthn prompt for sensitive actions.' },
+            { name: 'Role Switcher', desc: 'RBAC context toggle for testing boundaries.' }
+        ]
     }
 ];
 
@@ -74,6 +86,13 @@ const NeuComponents: React.FC<NeuComponentsProps> = ({ darkMode }) => {
             element.scrollIntoView({ behavior: 'smooth' });
         }
     };
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }; 
 
     return (
         <main className={`neu-components-page ${darkMode ? 'dark-mode' : 'light-mode'}`}>
@@ -159,9 +178,8 @@ const NeuComponents: React.FC<NeuComponentsProps> = ({ darkMode }) => {
                     );
                 })}
             </div>
-
-            {/* Reusable Enterprise CTA */}
-            <EnterpriseCTA 
+            <FAButton darkMode={darkMode} icon={<i className="bx bx-up-arrow-alt"></i>} onClick={scrollToTop}/>
+          <EnterpriseCTA 
                 darkMode={darkMode}
                 heading="The enterprise platform for shipping agents and apps"
                 description="Build, deploy, secure, and govern AI agents and modern web applications on a platform designed for enterprise scale, performance, and reliability."

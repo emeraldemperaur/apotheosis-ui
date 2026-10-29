@@ -1,4 +1,5 @@
 import React from 'react';
+import macbookFrame from '../assets/macbook-pro-frame.png';
 
 export const DesktopFrame: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => {
     return (
@@ -7,7 +8,7 @@ export const DesktopFrame: React.FC<{ children: React.ReactNode; className?: str
                 <div className="tv-ram">
                     <img 
                         alt="Macbook Pro" 
-                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiB7XZ9wocjdZwa7lnpoLnYJlMeJjnIfRTc-CXO4s1D_ZfUTB8VLWT9E6HnqY92i2OgcbstLIT1Kzz-Ju5feWx4vyu_K0Jc3UR22DO2Mpd_SivvNixaEXyP_0lOssquKWgVwtA1QO2jsDe8p6SPWCTStoB8YUsItLDoxhnSO3LQqHnzSZzs8c1nOuxdho4/s1600/ram-3.png" 
+                        src={macbookFrame} 
                     />
                 </div>
                 <div className="tv-video">

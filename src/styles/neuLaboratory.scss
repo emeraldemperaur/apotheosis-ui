@@ -511,3 +511,43 @@ $light-color: #fff !default;
     }
   }
 }
+
+/* =========================================
+   MOBILE RESPONSIVE 3D SCALING
+========================================= */
+@media (max-width: 900px) {
+  .output-3d-stage,
+  .showcase-section .perspective-container {
+    transform: scale(0.75);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Scale the 3D table down to fit mobile screens */
+  .output-3d-stage,
+  .showcase-section .perspective-container {
+    transform: scale(0.5);
+  }
+  
+  /* Reduce the container height so it doesn't leave massive empty gaps when scaled down */
+  .output-3d-stage {
+    height: 350px;
+    margin-top: 40px;
+  }
+
+  .showcase-section {
+    padding: 60px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .output-3d-stage,
+  .showcase-section .perspective-container {
+    transform: scale(0.4);
+  }
+  
+  .output-3d-stage {
+    height: 280px;
+  }
+}
