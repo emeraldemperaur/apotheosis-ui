@@ -16,7 +16,7 @@
     line-height: 1.6;
     margin: 24px auto 0 auto;
     font-weight: 400;
-    max-width: 800px;
+    max-width: 900px;
   }
 }
 
@@ -53,7 +53,7 @@
 
   .window-header {
     height: 48px;
-    background: rgba(15, 15, 20, 0.05); /* Subtle contrast against the glass */
+    background: rgba(15, 15, 20, 0.05); 
     border-bottom: var(--border);
     display: flex;
     justify-content: space-between;

@@ -1,5 +1,5 @@
 import '../styles/main.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import terminalIcon from '../assets/console-icon.png';
 import aiChipIcon from '../assets/aichip-icon.png';
 import aiChipIconDark from '../assets/ai-chip-icon-dark.png';
@@ -23,17 +23,19 @@ interface NavigationMenuProps {
 }
 
 const NavigationMenu = ({ isDarkMode, toggleTheme }: NavigationMenuProps) => {
+    const location = useLocation();
     const [isDocumentation, setIsDocumentation] = useState<[boolean, string]>([false, '']);
     const [isLaboratory, setIsLaboratory] = useState<[boolean, string]>([false, '']);
-    
-    // 1. Added missing state for mobile menu tracking
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-    
     const documentationRef = useRef<HTMLDivElement | null>(null);
     const laboratoryRef = useRef<HTMLDivElement | null>(null);
-    
-    // 2. Added headerRef to properly detect clicks outside the entire navigation area
     const headerRef = useRef<HTMLElement | null>(null);
+
+    const docsPaths = ['/documentation', '/getting-started', '/ai-components', '/neu-components', '/neu-design-system'];
+    const labPaths = ['/neu-laboratory', '/pantheon'];
+
+    const isDocsActive = docsPaths.some(path => location.pathname.includes(path));
+    const isLabActive = labPaths.some(path => location.pathname.includes(path));
 
     const toggleDocumentation = () => {
         if (isLaboratory[0]) setIsLaboratory([false, '']);
@@ -48,7 +50,6 @@ const NavigationMenu = ({ isDarkMode, toggleTheme }: NavigationMenuProps) => {
     const closeDropDowns = () => { 
         setIsDocumentation([false, '']); 
         setIsLaboratory([false, '']); 
-        // 3. Ensure mobile menu closes when a link is clicked
         setIsMobileMenuOpen(false); 
     }
 
@@ -63,19 +64,16 @@ const NavigationMenu = ({ isDarkMode, toggleTheme }: NavigationMenuProps) => {
         }
      }
 
-    // 4. Converted from manual DOM manipulation to React state
     const toggleHamburger = () => { 
         setIsMobileMenuOpen(!isMobileMenuOpen); 
     }
 
-    // 5. Updated to check the entire header boundary to prevent accidental mobile menu collapses
     const handleExoClick = (event: MouseEvent) => {
         if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
             closeDropDowns();
         }
     };
 
-    // Apply global theme classes to the body based on the injected prop
     useEffect(() => {
         if (isDarkMode) {
             document.body.classList.add('dark-mode');
@@ -100,7 +98,6 @@ const NavigationMenu = ({ isDarkMode, toggleTheme }: NavigationMenuProps) => {
         <header ref={headerRef} style={{position: 'fixed', zIndex: 4, width: '100%'}} className={isDarkMode ? "nav-glass-dark" : "nav-glass-light"} id="nav-menu" aria-label="navigation bar">
             <div className="ux-container">
                 <div className="nav-start">
-                {/* Flex layout added here to align the 3D Icon and Logo Text */}
                 <NavLink className="logo" to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none' }}>
                     <TesseractIcon 
                         width={40} 
@@ -113,20 +110,24 @@ const NavigationMenu = ({ isDarkMode, toggleTheme }: NavigationMenuProps) => {
                 <nav className={`ux-menu ${isMobileMenuOpen ? 'show' : ''}`}>
                     <ul className="ux-menu-bar">
                     <li>
-                        <NavLink style={({ isActive }) => isActive ? { color: '#660033'} : {}} to="documentation">
-                        <button
-                        onMouseOver={() => showDropDown(1)}
-                        onClick={() => toggleDocumentation()}
-                        className="ux-nav-link ux-dropdown-btn"
-                        data-dropdown="dropdown1"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        aria-label="browse"
-                        id='dropdown-menu-one'
-                        >
-                         Documentation
-                        <i className="bx bx-chevron-down" aria-hidden="true"></i>
-                        </button></NavLink>
+                        <NavLink to="documentation">
+                            {({ isActive }) => (
+                                <button
+                                    style={(isActive || isDocsActive) ? { color: '#800020'} : {}}
+                                    onMouseOver={() => showDropDown(1)}
+                                    onClick={() => toggleDocumentation()}
+                                    className="ux-nav-link ux-dropdown-btn"
+                                    data-dropdown="dropdown1"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    aria-label="browse"
+                                    id='dropdown-menu-one'
+                                >
+                                    Documentation
+                                    <i className="bx bx-chevron-down" aria-hidden="true"></i>
+                                </button>
+                            )}
+                        </NavLink>
                         <div id="dropdown1" className={`ux-dropdown ${isDocumentation[1]}`} ref={documentationRef}>
                         <ul role="menu">
                             <li role="menuitem">
@@ -205,19 +206,23 @@ const NavigationMenu = ({ isDarkMode, toggleTheme }: NavigationMenuProps) => {
                         </div>
                     </li>
                     <li>
-                        <NavLink style={({ isActive }) => isActive ? { color: '#660033'} : {}} to="neu-laboratory">
-                        <button
-                        onMouseOver={() => showDropDown(2)}
-                        onClick={() => toggleLaboratory()}
-                        className="ux-nav-link ux-dropdown-btn"
-                        data-dropdown="dropdown2"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                        aria-label="neu-laboratory"
-                        >
-                        Neu Laboratory
-                        <i className="bx bx-chevron-down" aria-hidden="true"></i>
-                        </button></NavLink>
+                        <NavLink to="neu-laboratory">
+                            {({ isActive }) => (
+                                <button
+                                    style={(isActive || isLabActive) ? { color: '#800020'} : {}}
+                                    onMouseOver={() => showDropDown(2)}
+                                    onClick={() => toggleLaboratory()}
+                                    className="ux-nav-link ux-dropdown-btn"
+                                    data-dropdown="dropdown2"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    aria-label="neu-laboratory"
+                                >
+                                    Neu Laboratory
+                                    <i className="bx bx-chevron-down" aria-hidden="true"></i>
+                                </button>
+                            )}
+                        </NavLink>
                         <div id="dropdown2" className={`ux-dropdown ${isLaboratory[1]}`} ref={laboratoryRef}>
                         <ul role="menu">
                             <li>
@@ -241,19 +246,36 @@ const NavigationMenu = ({ isDarkMode, toggleTheme }: NavigationMenuProps) => {
                         </div>
                     </li>
                     <li>
-                        <NavLink style={({ isActive }) => isActive ? { color: '#660033'} : {}} to="apotheosis-mcp">
-                         <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="apotheosis-mcp" onClick={() => closeDropDowns()}>
-                               Apotheosis MCP
-                        </button></NavLink>
+                        <NavLink to="apotheosis-mcp">
+                            {({ isActive }) => (
+                                <button 
+                                    style={isActive ? { color: '#800020'} : {}}
+                                    className="ux-nav-link ux-dropdown-btn" 
+                                    aria-haspopup="true" 
+                                    aria-expanded="false" 
+                                    aria-label="apotheosis-mcp" 
+                                    onClick={() => closeDropDowns()}
+                                >
+                                    Apotheosis MCP
+                                </button>
+                            )}
+                        </NavLink>
                     </li>
                     <li>
-                        <NavLink style={({ isActive }) => isActive ? { color: '#660033'} : {}} to="raison-detre">
-                         <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="raison-detre" onClick={() => closeDropDowns()}>
-                               Raison D'être
-                        </button></NavLink>
-                    </li>
-                    <li>
-                        
+                        <NavLink to="raison-detre">
+                            {({ isActive }) => (
+                                <button 
+                                    style={isActive ? { color: '#800020'} : {}}
+                                    className="ux-nav-link ux-dropdown-btn" 
+                                    aria-haspopup="true" 
+                                    aria-expanded="false" 
+                                    aria-label="raison-detre" 
+                                    onClick={() => closeDropDowns()}
+                                >
+                                    Raison D'être
+                                </button>
+                            )}
+                        </NavLink>
                     </li>
                     </ul>
                 </nav>
@@ -263,7 +285,6 @@ const NavigationMenu = ({ isDarkMode, toggleTheme }: NavigationMenuProps) => {
                     <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="github" onClick={() => closeDropDowns()}>
                                <a href="https://www.github.com/emeraldemperaur/apotheosis-ui" target='_blank' rel="noreferrer"><i className="ux-menu-icons fa-brands fa-github"></i></a>
                     </button>
-                    {/* Theme Toggle Button utilizing injected props */}
                     <button className="ux-nav-link ux-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="toggle theme" onClick={() => { toggleTheme(); closeDropDowns(); }}>
                     <a style={{ cursor: 'pointer' }}><i className={`ux-menu-icons fa-regular ${isDarkMode ? 'fa-lightbulb' : 'fa-moon'}`}></i></a>
                     </button>

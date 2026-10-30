@@ -10,14 +10,12 @@ interface NotFoundProps {
 const NotFound: React.FC<NotFoundProps> = ({ darkMode }) => {
     return (
         <main className={`enterprise-layout not-found-page ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-            {/* Ambient Background & Deep Environment */}
             <div className="ambient-background">
                 <div className="glow-orb orb-1"></div>
                 <div className="glow-orb orb-2"></div>
                 <div className="grid-overlay"></div>
             </div>
 
-            {/* Falling Squares Architecture */}
             <div className="hero-canvas-container not-found-canvas">
                 <FallingSquares 
                     color={darkMode ? '#800020' : 'rgba(9, 9, 11, 0.15)'} 
@@ -25,7 +23,6 @@ const NotFound: React.FC<NotFoundProps> = ({ darkMode }) => {
                 />
             </div>
 
-            {/* Glassmorphic 404 Overlay */}
             <div className="content-wrapper not-found-content relative z-10">
                 <div className="glass-error-card">
                     <h1 className="error-code">404</h1>

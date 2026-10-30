@@ -1,6 +1,3 @@
-/* =========================================
-   GLOBAL ANIMATIONS
-========================================= */
 @keyframes bubbleFadeIn {
   from { 
     opacity: 0; 
@@ -25,9 +22,7 @@
     border-color: rgba(37, 99, 235, 0.3); 
   }
 }
-/* =========================================
-   BUILD WITH CONVENIENCE (Decoupled Glass)
-========================================= */
+
 .build-convenience-section {
   margin-bottom: 120px;
   
@@ -52,7 +47,7 @@
       width: 100%;
       height: 100%;
       border-radius: 24px;
-      padding: 1px; /* Space for the 1px gradient border */
+      padding: 1px;
       background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.01) 100%);
       box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
       transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
@@ -73,14 +68,14 @@
       .bwc-glass-panel {
         position: relative;
         border-radius: 23px;
-        background: rgba(255, 255, 255, 0.03); /* NeuButton ultra-sheer alpha */
+        background: rgba(255, 255, 255, 0.03); 
         backdrop-filter: blur(12px);
         padding: 24px;
         height: 100%;
         display: flex;
         flex-direction: column;
         z-index: 1;
-        transform: translateZ(20px); /* Preserves 3D depth */
+        transform: translateZ(20px); 
 
         h3 { font-size: 1.25rem; font-weight: 600; margin: 0 0 12px 0; }
         p { font-size: 0.95rem; line-height: 1.6; margin-bottom: 32px; flex-grow: 1; }
@@ -102,9 +97,7 @@
   }
 }
 
-/* =========================================
-   DESIGN | INTEGRATE SHOWCASE (Standalone)
-========================================= */
+
 .design-integrate-section {
   margin-bottom: 120px;
   transition: --primary-accent 1s ease;
@@ -235,9 +228,7 @@
   }
 }
 
-/* =========================================
-   AGNOSTIC TOOLKIT SECTION
-========================================= */
+
 .agnostic-toolkit-section {
   margin-bottom: 120px;
   
@@ -269,9 +260,7 @@
   }
 }
 
-/* =========================================
-   AGENTIC INFRASTRUCTURE SECTION
-========================================= */
+
 .agentic-infrastructure-section {
   display: flex; align-items: stretch; justify-content: space-between; width: 100%; max-width: 1200px; margin: 0 auto; padding: 80px 0; border-top: 1px solid rgba(255, 255, 255, 0.05);
   
@@ -288,13 +277,11 @@
     @media (max-width: 768px) { flex-direction: column; gap: 40px; }
   }
 
-  /* Interactive Square Element */
   .central-square {
     position: relative; width: 240px; height: 240px; flex-shrink: 0;
     
     .square-core { position: absolute; inset: 20px; background: #000000; z-index: 5; }
 
-    /* Directional Edge Glows */
     .glow-edge {
       position: absolute; background: #800020; opacity: 0; filter: blur(8px); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;
     }
@@ -304,19 +291,16 @@
     .edge-bottom { bottom: 15px; left: 25px; right: 25px; height: 10px; }
     .edge-left   { left: 15px; top: 25px; bottom: 25px; width: 10px; }
 
-    /* Default Ambient Base Glow */
     .square-ambient-glow {
       position: absolute; inset: -20px; background: radial-gradient(circle at center, rgba(128, 0, 32, 0.25) 0%, transparent 60%); z-index: 0; transition: opacity 0.4s ease; pointer-events: none;
     }
 
-    /* Shift the glow based on the hovered text region */
     &.hover-state-1 { .edge-top { opacity: 1; filter: blur(12px); box-shadow: 0 -20px 40px rgba(128, 0, 32, 0.75); } .square-ambient-glow { opacity: 0; } }
     &.hover-state-2 { .edge-right { opacity: 1; filter: blur(12px); box-shadow: 20px 0 40px rgba(128, 0, 32, 0.75); } .square-ambient-glow { opacity: 0; } }
     &.hover-state-3 { .edge-bottom { opacity: 1; filter: blur(12px); box-shadow: 0 20px 40px rgba(128, 0, 32, 0.75); } .square-ambient-glow { opacity: 0; } }
     &.hover-state-4 { .edge-left { opacity: 1; filter: blur(12px); box-shadow: -20px 0 40px rgba(128, 0, 32, 0.75); } .square-ambient-glow { opacity: 0; } }
   }
 
-  /* Dynamic Context Menu */
   .agentic-text-menu {
     display: flex; flex-direction: column; gap: 20px; max-width: 340px;
     

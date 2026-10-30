@@ -1,12 +1,8 @@
-/* =========================================
-   NEU COMPONENTS PAGE ROOT
-========================================= */
 .neu-components-page {
   position: relative;
   width: 100%;
   overflow-x: hidden;
   
-  /* Shared Base Theme Variables */
   &.light-mode {
     --bg-base: #ffffff;
     --text-base: #111827;
@@ -22,7 +18,7 @@
     --text-base: #ffffff;
     --text-muted-base: #9ca3af;
     
-    --bg-alt: #800020; /* Deep Burgundy for dark mode alternative sections */
+    --bg-alt: #800020; 
     --text-alt: #ffffff;
     --text-muted-alt: rgba(255, 255, 255, 0.8);
   }
@@ -61,7 +57,7 @@
 
 .icon-ribbon {
   position: sticky;
-  top: 60px; /* Adjust based on your global nav height */
+  top: 60px; 
   z-index: 50;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
@@ -87,9 +83,7 @@
   }
 }
 
-/* =========================================
-   ALTERNATING CATEGORY SECTIONS
-========================================= */
+
 .categories-wrapper {
   display: flex;
   flex-direction: column;
@@ -97,12 +91,10 @@
   .category-section {
     position: relative;
     padding: 120px 24px;
-    margin-top: -60px; /* Pull up to overlap and allow clip-path to cut into the section above */
+    margin-top: -60px; 
     
-    /* The Geometric Cutout Mask matching Vercel UI */
     clip-path: polygon(0 0, 15% 0, 20% 60px, 80% 60px, 85% 0, 100% 0, 100% 100%, 0 100%);
     
-    /* Add top padding to account for the clipped area */
     padding-top: 140px;
 
     &:first-child {
@@ -121,7 +113,6 @@
       }
     }
 
-    /* Apply themes */
     &.theme-base {
       background-color: var(--bg-base);
       h2 { color: var(--text-base); }
@@ -136,9 +127,6 @@
   }
 }
 
-/* =========================================
-   GLASSMORPHIC SHOWCASE GRIDS
-========================================= */
 .showcase-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px;
 
@@ -188,9 +176,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* =========================================
-   ENTERPRISE CTA COMPONENT
-========================================= */
+
 .enterprise-cta-section {
   padding: 100px 24px; border-top: 1px solid rgba(255,255,255,0.05);
 

@@ -1,6 +1,5 @@
-/* =========================================
-   NEU LABORATORY PAGE ROOT
-========================================= */
+@use "sass:color";
+
 .neu-lab-page {
   position: relative;
   width: 100%;
@@ -34,9 +33,7 @@
   section { position: relative; z-index: 1; }
 }
 
-/* =========================================
-   HERO SECTION (Vercel Style)
-========================================= */
+
 .lab-hero {
   padding: 160px 24px 80px;
   max-width: 1200px;
@@ -52,6 +49,7 @@
       letter-spacing: -0.04em;
       color: var(--text-main);
       margin: 0 0 32px 0;
+      text-align: left;
 
       .rotating-text-wrapper {
         display: inline-block;
@@ -61,7 +59,6 @@
         border: 1px solid var(--glass-border);
         overflow: hidden;
         vertical-align: bottom;
-        /* Increased from 1.1em to accommodate font descenders */
         height: 1.3em; 
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
@@ -79,7 +76,6 @@
       .rotating-text {
         display: block;
         color: var(--accent);
-        /* Normalizes internal spacing so the text sits perfectly within the new wrapper height */
         line-height: 1.1; 
       }
 
@@ -92,7 +88,8 @@
       font-size: 1.25rem;
       line-height: 1.6;
       color: var(--text-muted);
-      max-width: 600px;
+      max-width: 900px;
+      text-align: justify;
     }
   }
 }
@@ -102,9 +99,6 @@
   100% { transform: translateY(0); opacity: 1; }
 }
 
-/* =========================================
-   NAVIGATION RIBBON
-========================================= */
 .lab-ribbon {
   position: sticky; top: 0; z-index: 50; width: 100%;
   background: rgba(255, 255, 255, 0.02);
@@ -124,9 +118,7 @@
   }
 }
 
-/* =========================================
-   3D SHOWCASE ENVIRONMENTS
-========================================= */
+
 .showcase-section {
   padding: 120px 24px;
   overflow: hidden;
@@ -185,11 +177,8 @@
   }
 }
 
-/* =========================================
-   DEVICE FRAMES (Desktop Macbook & iPhone)
-========================================= */
 
-/* Macbook Frame */
+
 .macbook-frame-wrapper {
     position: relative;
     width: 600px; 
@@ -223,7 +212,7 @@
         background: #000;
         z-index: 0;
         
-        iframe, img {
+        > * {
             position: absolute;
             top: 0;
             left: 0;
@@ -233,17 +222,16 @@
     }
 }
 
-/* iPhone 14 Frame */
 $device-midnight: #272C31;
-$device-midnight-dark: darken($device-midnight, 10%);
+$device-midnight-dark: color.adjust($device-midnight, $lightness: -10%);
 $device-purple: #c8bad3;
-$device-purple-dark: darken($device-purple, 10%);
+$device-purple-dark: color.adjust($device-purple, $lightness: -10%);
 $device-starlight: #D3CDC7;
-$device-starlight-dark: darken($device-starlight, 10%);
+$device-starlight-dark: color.adjust($device-starlight, $lightness: -10%);
 $device-red: #EC302B;
-$device-red-dark: darken($device-red, 10%);
+$device-red-dark: color.adjust($device-red, $lightness: -10%);
 $device-blue: #98ABBE;
-$device-blue-dark: darken($device-blue, 10%);
+$device-blue-dark: color.adjust($device-blue, $lightness: -10%);
 $device-panel: #010101;
 $light-color: #fff !default;
 
@@ -272,7 +260,6 @@ $light-color: #fff !default;
     background-size: cover;
     object-fit: cover;
     position: relative;
-    /* Ensure the iframe scales inside the rounded corners */
     overflow: hidden; 
   }
 }
@@ -285,13 +272,12 @@ $light-color: #fff !default;
     background: $device-panel;
     border: 1px solid $device-midnight-dark;
     border-radius: 68px;
-    box-shadow: inset 0 0 4px 2px lighten($device-midnight, 55%), inset 0 0 0 6px $device-midnight;
+    box-shadow: inset 0 0 4px 2px color.adjust($device-midnight, $lightness: 55%), inset 0 0 0 6px $device-midnight;
     height: 868px;
     padding: 19px;
     width: 428px;
   }
 
-  // 2532‑by‑1170-pixel resolution
   .device-screen {
     border-radius: 49px;
     height: 830px;
@@ -354,10 +340,10 @@ $light-color: #fff !default;
       position: absolute;
     }
     &::after {
-      background: lighten($device-panel, 8%);
+      background: color.adjust($device-panel, $lightness: 8%);
       border: 1px solid $device-panel;
       border-radius: 4px;
-      box-shadow: 0 0 4px lighten($device-panel, 8%);
+      box-shadow: 0 0 4px color.adjust($device-panel, $lightness: 8%);
       height: 7px;
       left: 50%;
       margin-left: -35px;
@@ -435,11 +421,89 @@ $light-color: #fff !default;
       left: 86px;
     }
   }
+
+  &.device-purple {
+    .device-frame {
+      border-color: $device-purple-dark;
+      box-shadow: inset 0 0 4px 2px color.adjust($device-purple, $lightness: 55%), inset 0 0 0 6px $device-purple;
+    }
+
+    .device-btns {
+      background: $device-purple-dark;
+  
+      &::after,
+      &::before {
+        background: $device-purple-dark;
+      }
+    }
+  
+    .device-power {
+      background: $device-purple-dark;
+    }
+  }
+
+  &.device-starlight {
+    .device-frame {
+      border-color: $device-starlight-dark;
+      box-shadow: inset 0 0 4px 2px color.adjust($device-starlight, $lightness: 55%), inset 0 0 0 6px $device-starlight;
+    }
+
+    .device-btns {
+      background: $device-starlight-dark;
+  
+      &::after,
+      &::before {
+        background: $device-starlight-dark;
+      }
+    }
+  
+    .device-power {
+      background: $device-starlight-dark;
+    }
+  }
+
+  &.device-red {
+    .device-frame {
+      border-color: $device-red-dark;
+      box-shadow: inset 0 0 4px 2px color.adjust($device-red, $lightness: 55%), inset 0 0 0 6px $device-red;
+    }
+
+    .device-btns {
+      background: $device-red-dark;
+  
+      &::after,
+      &::before {
+        background: $device-red-dark;
+      }
+    }
+  
+    .device-power {
+      background: $device-red-dark;
+    }
+  }
+
+  &.device-blue {
+    .device-frame {
+      border-color: $device-blue-dark;
+      box-shadow: inset 0 0 4px 2px color.adjust($device-blue, $lightness: 55%), inset 0 0 0 6px $device-blue;
+    }
+
+    .device-btns {
+      background: $device-blue-dark;
+  
+      &::after,
+      &::before {
+        background: $device-blue-dark;
+      }
+    }
+  
+    .device-power {
+      background: $device-blue-dark;
+    }
+  }
 }
 
-/* =========================================
-   FEATURE GRID (Vercel Style)
-========================================= */
+
 .features-section {
   max-width: 1200px; margin: 0 auto; padding: 100px 24px;
 
@@ -469,9 +533,7 @@ $light-color: #fff !default;
   }
 }
 
-/* =========================================
-   FAQ SECTION (Vercel Style)
-========================================= */
+
 .faq-section {
   max-width: 1200px; margin: 0 auto; padding: 100px 24px 160px; border-top: 1px solid var(--glass-border);
 
@@ -501,7 +563,7 @@ $light-color: #fff !default;
 
       .faq-answer {
         max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
-        p { color: var(--text-muted); line-height: 1.6; margin: 16px 0 0 40px; }
+        p { color: var(--text-muted); line-height: 1.6; margin: 16px 0 0 40px; text-align: justify; }
       }
 
       &.open {
@@ -512,9 +574,7 @@ $light-color: #fff !default;
   }
 }
 
-/* =========================================
-   MOBILE RESPONSIVE 3D SCALING
-========================================= */
+
 @media (max-width: 900px) {
   .output-3d-stage,
   .showcase-section .perspective-container {
@@ -524,13 +584,11 @@ $light-color: #fff !default;
 }
 
 @media (max-width: 768px) {
-  /* Scale the 3D table down to fit mobile screens */
   .output-3d-stage,
   .showcase-section .perspective-container {
     transform: scale(0.5);
   }
   
-  /* Reduce the container height so it doesn't leave massive empty gaps when scaled down */
   .output-3d-stage {
     height: 350px;
     margin-top: 40px;

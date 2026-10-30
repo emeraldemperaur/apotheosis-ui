@@ -48,13 +48,10 @@ const NeuButton = ({ buttonVersion, buttonText, routePath, style }: NeuButtonPro
             onMouseLeave={handleMouseLeave}
             aria-label={buttonText}
         >
-            {/* Dynamic Glare Layer */}
             <div className="btn-glare" style={glareStyle}></div>
             
-            {/* Button Content */}
             <span className="btn-text">{buttonText}</span>
             
-            {/* Subtle border highlight */}
             <div className="btn-border"></div>
         </button>
     );

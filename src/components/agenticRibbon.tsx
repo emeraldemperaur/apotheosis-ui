@@ -24,7 +24,7 @@ const AgenticRibbon = ({ darkMode }: { darkMode: boolean }) => {
                 <AgenticCard imgSrc={darkMode ? windsurfLogo : windsurfLogo} agentName='Windsurf' productName='Cascade' url='https://www.windsurf.com/cascade'/>
                 <AgenticCard imgSrc={antigravityLogo} agentName='Google' productName='Antigravity' url='https://antigravity.google/'/>
                 <AgenticCard imgSrc={replitLogo} agentName='Replit' productName='Agent3' url='https://www.replit.com/'/>
-                <AgenticCard imgSrc={darkMode ? spaceXLightLogo : spaceXDarkLogo} agentName='SpaceX' productName='Grok Build' url='https://x.ai/build'/>
+                <AgenticCard imgSrc={darkMode ? spaceXLightLogo : spaceXDarkLogo} agentName='SpaceXSI' productName='Grok Build' url='https://x.ai/build'/>
                 <AgenticCard imgSrc={claudeLogo} agentName='Anthropic' productName='Claude' url='https://claude.ai/'/>
             </div>
         </section>

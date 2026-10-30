@@ -8,7 +8,7 @@ const NeuFoot = () => {
                 <span className='neu-foot-column-title'>Useful Links</span>
                 <ul>
                     <li><NavLink to='getting-started' className='neu-foot-links'>Getting Started</NavLink></li>
-                    <li><NavLink to='faqs' className='neu-foot-links'>FAQs</NavLink></li>
+                    <li><NavLink to='neu-components' className='neu-foot-links'>Neu Components</NavLink></li>
                     <li><NavLink to='ai-components' className='neu-foot-links'>AI Components</NavLink></li>
                 </ul>
             </div>

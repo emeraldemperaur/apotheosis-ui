@@ -1,5 +1,5 @@
 .mito-blob-logo {
-  display: block; /* Prevents tiny layout shifts common with inline SVGs */
+  display: block;
   
   path {
     animation: mito-blob-morph 7s linear infinite, mito-blob-rot 53s linear infinite;

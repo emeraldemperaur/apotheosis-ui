@@ -20,16 +20,10 @@ const Pantheon: React.FC<PantheonProps> = ({ darkMode = true }) => {
     const [wordIndex, setWordIndex] = useState(0);
     const [prompt, setPrompt] = useState('');
     const [appState, setAppState] = useState<'idle' | 'generating' | 'generated'>('idle');
-
-    // 3D Tilt Tracking State
     const [tiltStyles, setTiltStyles] = useState<{ [key: string]: string }>({});
     const [hoveredId, setHoveredId] = useState<string | null>(null);
-
-    // Cinematic Depth & Scroll State
     const [isCodeFocused, setIsCodeFocused] = useState(false);
     const outputStageRef = useRef<HTMLDivElement>(null);
-
-    // Hero Text Rotation
     useEffect(() => {
         const interval = setInterval(() => {
             setWordIndex(prev => (prev + 1) % rotatingWords.length);
@@ -37,21 +31,16 @@ const Pantheon: React.FC<PantheonProps> = ({ darkMode = true }) => {
         return () => clearInterval(interval);
     }, []);
 
-    // Interactive 3D Mouse Tracking
     const handleMouseMove = (e: MouseEvent<HTMLElement>, id: string) => {
         setHoveredId(id);
         const el = e.currentTarget;
         const rect = el.getBoundingClientRect();
-        
         const x = e.clientX - rect.left; 
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
-        // Milder tilt for larger UI panels
         const rotateX = ((y - centerY) / centerY) * -4;
         const rotateY = ((x - centerX) / centerX) * 4;
-        
         setTiltStyles(prev => ({
             ...prev,
             [id]: `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`
@@ -81,7 +70,6 @@ const Pantheon: React.FC<PantheonProps> = ({ darkMode = true }) => {
         
         setTimeout(() => {
             setAppState('generated');
-            // Allow React to mount the generated stage, then scroll it perfectly into view
             setTimeout(() => {
                 outputStageRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 100);
@@ -151,7 +139,7 @@ const Pantheon: React.FC<PantheonProps> = ({ darkMode = true }) => {
                         >
                             <div className="input-header">
                                 <span className="model-id"><i className="bx bx-chip"></i> Pantheon Architect Model</span>
-                                <span className="version-badge">v3.0.0</span>
+                                <span className="version-badge">v2.4.0</span>
                             </div>
                             
                             <textarea 
@@ -184,15 +172,12 @@ const Pantheon: React.FC<PantheonProps> = ({ darkMode = true }) => {
                         </div>
                     )}
 
-                    {/* Restaged 3D Output */}
                     {appState === 'generated' && (
                         <div className="output-3d-stage fade-in" ref={outputStageRef}>
                             <div className="tabletop-static">
                                 
-                                {/* Static Glassmorphic Table Surface (Neutral Glow) */}
                                 <div className="table-surface"></div>
 
-                                {/* Foreground Desktop Frame */}
                                 <div 
                                     className={`device-stand standalone-desktop interactive-macbook ${isCodeFocused ? 'dimmed' : ''}`}
                                     onClick={() => setIsCodeFocused(true)}
@@ -216,7 +201,6 @@ const Pantheon: React.FC<PantheonProps> = ({ darkMode = true }) => {
                                 </div>
                             </div>
 
-                            {/* Floating Code Card (Revealed on Click) */}
                             <div className={`floating-code-overlay ${isCodeFocused ? 'visible' : ''}`}>
                                 <div 
                                     className={`glass-pane code-pane ${hoveredId === 'code-pane' ? 'is-interacting' : ''}`}

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, type MouseEvent } from 'react';
 import FallingSquares from '../components/FallingSquares';
 import { DesktopFrame, IphoneFrame } from '../components/DeviceFrames';
 import '../styles/neuLaboratory.scss';
+import ChatTerminal from '../components/ChatTerminal';
 
 interface NeuLaboratoryProps {
     darkMode: boolean;
@@ -33,18 +34,10 @@ const NeuLaboratory: React.FC<NeuLaboratoryProps> = ({ darkMode }) => {
     
     const [desktopRot, setDesktopRot] = useState(60);
     const [mobileRot, setMobileRot] = useState(60);
-    
-    // Mouse tracking state for feature grid
     const [tiltStyles, setTiltStyles] = useState<{ [key: number]: string }>({});
     const [hoveredId, setHoveredId] = useState<number | null>(null);
-
-    // Mouse tracking state for hero text
     const [heroTextTilt, setHeroTextTilt] = useState<string>('');
-    
-    // FAQ accordion state (Restored)
     const [openFaq, setOpenFaq] = useState<number | null>(0);
-
-    // Hero Text Rotation
     useEffect(() => {
         const interval = setInterval(() => {
             setWordIndex(prev => (prev + 1) % rotatingWords.length);
@@ -52,17 +45,14 @@ const NeuLaboratory: React.FC<NeuLaboratoryProps> = ({ darkMode }) => {
         return () => clearInterval(interval);
     }, []);
 
-    // 3D Table Scroll Effect
     useEffect(() => {
         const handleScroll = () => {
             const windowHeight = window.innerHeight;
             
             if (desktopRef.current) {
                 const dRect = desktopRef.current.getBoundingClientRect();
-                // Map progress so it resolves fully by the time it reaches the upper-middle of the screen
                 let dProg = (windowHeight - dRect.top) / (windowHeight * 0.65);
                 dProg = Math.max(0, Math.min(1, dProg));
-                // Rotate from a steep 65deg down to exactly 0deg (perfectly flat/leveled)
                 setDesktopRot(65 - (dProg * 65));
             }
 
@@ -134,7 +124,6 @@ const NeuLaboratory: React.FC<NeuLaboratoryProps> = ({ darkMode }) => {
                 <FallingSquares color={darkMode ? 'rgba(128, 0, 32, 0.4)' : 'rgba(9, 9, 11, 0.15)'} maxSquares={300} />
             </div>
 
-            {/* Hero Section */}
             <section className="lab-hero">
                 <div className="lab-hero-content">
                     <h1 className="dynamic-heading">
@@ -157,7 +146,6 @@ const NeuLaboratory: React.FC<NeuLaboratoryProps> = ({ darkMode }) => {
                 </div>
             </section>
 
-            {/* Icon Ribbon */}
             <nav className="lab-ribbon">
                 <div className="ribbon-inner">
                     <div className="ribbon-node" onClick={() => scrollToSection('desktop-showcase')}>
@@ -169,11 +157,10 @@ const NeuLaboratory: React.FC<NeuLaboratoryProps> = ({ darkMode }) => {
                 </div>
             </nav>
 
-            {/* 3D Desktop Showcase */}
             <section id="desktop-showcase" className="showcase-section">
                 <div className="showcase-header">
-                    <h2>UHD Desktop Architecture</h2>
-                    <p>Fluid compute for dynamic web applications optimized for widescreen monitors.</p>
+                    <h2>UHD Desktop</h2>
+                    <p>Fluid neucorporeal UI components for dynamic web applications optimized for high-pixel-density widescreen monitors.</p>
                 </div>
                 <div className="perspective-container">
                     <div 
@@ -184,22 +171,17 @@ const NeuLaboratory: React.FC<NeuLaboratoryProps> = ({ darkMode }) => {
                         <div className="table-surface"></div>
                         <div className="device-stand standalone-desktop">
                             <DesktopFrame>
-                                <iframe 
-                                    src="https://example.com" 
-                                    title="Desktop UI Preview"
-                                    style={{ width: '100%', height: '100%', border: 'none' }}
-                                />
+                                <ChatTerminal darkMode={darkMode}/>
                             </DesktopFrame>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* 3D Mobile Showcase */}
             <section id="mobile-showcase" className="showcase-section">
                 <div className="showcase-header">
-                    <h2>Mobile Responsive Engine</h2>
-                    <p>Adaptive grids and touch-first mechanics designed for constraints.</p>
+                    <h2>Mobile</h2>
+                    <p>Responsive UI engine renders adaptive grids and touch-first mechanics designed for viewport constraints.</p>
                 </div>
                 <div className="perspective-container">
                     <div 
@@ -221,7 +203,6 @@ const NeuLaboratory: React.FC<NeuLaboratoryProps> = ({ darkMode }) => {
                 </div>
             </section>
 
-            {/* Features Grid */}
             <section className="features-section">
                 <div className="features-header">
                     <h2>Optimized rendering for agentic applications</h2>
@@ -243,7 +224,6 @@ const NeuLaboratory: React.FC<NeuLaboratoryProps> = ({ darkMode }) => {
                 </div>
             </section>
 
-            {/* FAQs */}
             <section className="faq-section">
                 <div className="faq-layout">
                     <div className="faq-left">

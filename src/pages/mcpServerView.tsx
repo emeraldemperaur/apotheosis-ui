@@ -37,12 +37,9 @@ const architecturalFeatures = [
 
 const ApotheosisMCP: React.FC<ApotheosisMCPProps> = ({ darkMode = true }) => {
     const [wordIndex, setWordIndex] = useState(0);
-    
-    // 3D Tilt Tracking State
     const [tiltStyles, setTiltStyles] = useState<{ [key: string]: string }>({});
     const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-    // Hero Text Rotation
     useEffect(() => {
         const interval = setInterval(() => {
             setWordIndex(prev => (prev + 1) % rotatingWords.length);
@@ -50,7 +47,6 @@ const ApotheosisMCP: React.FC<ApotheosisMCPProps> = ({ darkMode = true }) => {
         return () => clearInterval(interval);
     }, []);
 
-    // Interactive 3D Mouse Tracking (for features and pricing)
     const handleMouseMove = (e: MouseEvent<HTMLElement>, id: string) => {
         setHoveredId(id);
         const el = e.currentTarget;
@@ -81,7 +77,6 @@ const ApotheosisMCP: React.FC<ApotheosisMCPProps> = ({ darkMode = true }) => {
     return (
         <main className={`mcp-server-page ${darkMode ? 'dark-mode' : 'light-mode'}`}>
             
-            {/* Ambient Background with Falling Squares & Grid */}
             <div className="fixed-ambient-bg">
                 <div className="grid-overlay"></div>
                 <FallingSquares 
@@ -93,7 +88,6 @@ const ApotheosisMCP: React.FC<ApotheosisMCPProps> = ({ darkMode = true }) => {
 
             <div className="mcp-content-layer">
                 
-                {/* Right-Aligned Hero Section */}
                 <section className="mcp-hero-section">
                     <h1 className="dynamic-heading">
                         The Vanguard of <br/>
@@ -111,7 +105,6 @@ const ApotheosisMCP: React.FC<ApotheosisMCPProps> = ({ darkMode = true }) => {
                     </h1>
                 </section>
 
-                {/* Full Width Glassmorphic Intro Ribbon */}
                 <section className="mcp-intro-ribbon">
                     <div className="ribbon-inner">
                         <div className="intro-header">
@@ -129,7 +122,6 @@ const ApotheosisMCP: React.FC<ApotheosisMCPProps> = ({ darkMode = true }) => {
                     </div>
                 </section>
 
-                {/* Architectural Features Grid */}
                 <section className="mcp-features-section">
                     <div className="section-header">
                         <h2>Core Architectural Features</h2>
@@ -156,7 +148,6 @@ const ApotheosisMCP: React.FC<ApotheosisMCPProps> = ({ darkMode = true }) => {
                     </div>
                 </section>
 
-                {/* Pricing Section */}
                 <section className="mcp-pricing-section">
                     <div 
                         className={`glass-pricing-card ${hoveredId === 'pricing-card' ? 'is-interacting' : ''}`}

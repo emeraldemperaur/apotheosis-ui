@@ -9,7 +9,6 @@ interface GettingStartedProps {
 const GettingStarted: React.FC<GettingStartedProps> = ({ darkMode }) => {
     return(
         <main className={`enterprise-layout relative ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-            {/* Ambient Background Depth */}
             <div className="ambient-background">
                 <div className="glow-orb orb-1"></div>
                 <div className="glow-orb orb-2"></div>
@@ -27,7 +26,6 @@ const GettingStarted: React.FC<GettingStartedProps> = ({ darkMode }) => {
                 
                 <InstallSection darkMode={darkMode} />
                 
-                {/* Decorative Constellation Underlay */}
                 <section className="constellation-section relative z-10" style={{ marginTop: '120px', padding: '0' }}>
                     <div className="constellation-wrapper" style={{ marginBottom: '0', paddingTop: '0' }}>
                         <div className="constellation-underglow" style={{ opacity: 0.4 }}></div>

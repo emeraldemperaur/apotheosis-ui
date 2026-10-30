@@ -97,7 +97,6 @@ const NeuComponents: React.FC<NeuComponentsProps> = ({ darkMode }) => {
     return (
         <main className={`neu-components-page ${darkMode ? 'dark-mode' : 'light-mode'}`}>
             
-            {/* Hero Section */}
             <div className="hero-section">
                 <div className="ambient-background">
                     <div className="grid-overlay"></div>
@@ -119,7 +118,6 @@ const NeuComponents: React.FC<NeuComponentsProps> = ({ darkMode }) => {
                 </div>
             </div>
 
-            {/* Navigation Ribbon */}
             <div className="icon-ribbon">
                 <div className="ribbon-container">
                     {categories.map(cat => (
@@ -131,10 +129,8 @@ const NeuComponents: React.FC<NeuComponentsProps> = ({ darkMode }) => {
                 </div>
             </div>
 
-            {/* Alternating Category Sections */}
             <div className="categories-wrapper">
                 {categories.map((category, index) => {
-                    // Alternate themes: Even index = Dark/Burgundy, Odd index = Light/Base
                     const isDarkSection = index % 2 === 0;
                     
                     return (

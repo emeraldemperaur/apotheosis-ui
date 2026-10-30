@@ -28,7 +28,6 @@ const InstallSection: React.FC<InstallSectionProps> = ({ darkMode }) => {
     return(
         <div style={{ width: '100%', position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             
-            {/* Floating Glassmorphic Segmented Control */}
             <div style={{ 
                 display: 'flex', 
                 gap: '8px', 
@@ -56,7 +55,6 @@ const InstallSection: React.FC<InstallSectionProps> = ({ darkMode }) => {
                 </button>
             </div>
 
-            {/* Wide Content Area */}
             <div style={{ width: '100%', maxWidth: '1111px', color: 'var(--text-main)' }}>
                 
                 {activeTab === 'npm' && (

@@ -11,12 +11,9 @@ const rotatingWords = ['Next-Gen Interfaces', 'Zero-Trust Systems', 'Agentic Wor
 
 const RaisonDetre: React.FC<RaisonDetreProps> = ({ darkMode = true }) => {
     const [wordIndex, setWordIndex] = useState(0);
-    
-    // 3D Tilt Tracking State
     const [tiltStyles, setTiltStyles] = useState<{ [key: string]: string }>({});
     const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-    // Hero Text Rotation
     useEffect(() => {
         const interval = setInterval(() => {
             setWordIndex(prev => (prev + 1) % rotatingWords.length);
@@ -24,7 +21,6 @@ const RaisonDetre: React.FC<RaisonDetreProps> = ({ darkMode = true }) => {
         return () => clearInterval(interval);
     }, []);
 
-    // Interactive 3D Mouse Tracking
     const handleMouseMove = (e: MouseEvent<HTMLElement>, id: string) => {
         setHoveredId(id);
         const el = e.currentTarget;
@@ -55,7 +51,6 @@ const RaisonDetre: React.FC<RaisonDetreProps> = ({ darkMode = true }) => {
     return (
         <main className={`raison-detre-page ${darkMode ? 'dark-mode' : 'light-mode'}`}>
             
-            {/* Ambient Background with Falling Squares & Grid */}
             <div className="fixed-ambient-bg">
                 <div className="grid-overlay"></div>
                 <FallingSquares 
@@ -67,7 +62,6 @@ const RaisonDetre: React.FC<RaisonDetreProps> = ({ darkMode = true }) => {
 
             <div className="rd-content-layer">
                 
-                {/* Left-Aligned Hero Section */}
                 <section className="rd-hero-section">
                     <h1 className="dynamic-heading">
                         Architecting <br/>
@@ -87,7 +81,6 @@ const RaisonDetre: React.FC<RaisonDetreProps> = ({ darkMode = true }) => {
                     </p>
                 </section>
 
-                {/* Full-Width Glassmorphic Philosophy Ribbon */}
                 <section 
                     className={`rd-philosophy-ribbon ${hoveredId === 'philosophy-ribbon' ? 'is-interacting' : ''}`}
                     onMouseMove={(e) => handleMouseMove(e, 'philosophy-ribbon')}
@@ -98,7 +91,7 @@ const RaisonDetre: React.FC<RaisonDetreProps> = ({ darkMode = true }) => {
                         <div className="philosophy-content">
                             <h2 className="rd-subheading">Engineering the Modern Interface</h2>
                             <p>
-                                Vanguard software engineering requires a delicate balance: front-end elegance backed by strict, zero-trust backend logic. Apotheosis is built on the philosophy of developer empowerment—equipping creators with tools that elevate the digital medium without compromising on security or scalability.
+                                Vanguard software engineering requires a delicate balance: front-end elegance backed by strict, zero-trust backend logic. Apotheosis is built on the philosophy of developer empowerment; equipping creators with tools that elevate the digital medium without compromising on security or scalability.
                             </p>
                             <p>
                                 By merging deterministic UI architecture with non-deterministic AI models, it proffers a standard for frontend components and backend infrastructure that is structurally reliable, highly extensible, and intuitively designed for the agentic web.
@@ -113,7 +106,6 @@ const RaisonDetre: React.FC<RaisonDetreProps> = ({ darkMode = true }) => {
                     </div>
                 </section>
 
-                {/* Connect & Collaborate Social Grid */}
                 <section className="rd-developer-section">
                     <div className="section-header">
                         <h2>Connect & Collaborate</h2>

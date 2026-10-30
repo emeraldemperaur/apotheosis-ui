@@ -98,14 +98,12 @@ const TesseractIcon: React.FC<TesseractIconProps> = ({
 
     return () => {
       if (reqRef.current) cancelAnimationFrame(reqRef.current);
-      // Type assertion added to bypass missing interface definition
       (illo as any).children = []; 
     };
   }, [width, height, speed]); 
 
   useEffect(() => {
     if (illoRef.current) {
-      // Type assertion added to bypass missing interface definition
       (illoRef.current as any).children.forEach((child: any) => {
         child.color = color;
       });

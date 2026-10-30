@@ -1,6 +1,3 @@
-/* =========================================
-   APOTHEOSIS SYSTEM PAGE ROOT & PARALLAX
-========================================= */
 .apotheosis-system-page {
   position: relative;
   width: 100%;
@@ -9,7 +6,6 @@
   background-color: var(--bg-base);
   box-sizing: border-box;
   
-  /* Theme Variables */
   &.light-mode {
     --bg-base: #f9fafb;
     --text-main: #000000;
@@ -38,9 +34,6 @@
     overflow: hidden;
   }
 
-  /* 
-     CSS 3D Parallax Mechanics 
-  */
   .parallax-wrapper {
     position: absolute;
     inset: 0; 
@@ -51,11 +44,9 @@
     scroll-behavior: smooth;
     z-index: 1;
 
-    /* Firefox Custom Scrollbar */
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-thumb) transparent;
     
-    /* WebKit Custom Scrollbar */
     &::-webkit-scrollbar {
       width: 8px;
     }
@@ -75,9 +66,7 @@
   }
 }
 
-/* =========================================
-   HERO SECTION (Vercel Style)
-========================================= */
+
 .sys-hero-section {
   position: relative;
   min-height: 80vh;
@@ -188,9 +177,7 @@
   }
 }
 
-/* =========================================
-   NAVIGATION RIBBON
-========================================= */
+
 .tenet-ribbon {
   position: sticky;
   top: 0;
@@ -233,9 +220,6 @@
   }
 }
 
-/* =========================================
-   PARALLAX LAYERS & GLASS PANELS
-========================================= */
 .parallax-bg-layer {
   position: relative;
   display: flex;

@@ -36,7 +36,6 @@ const AIComponents: React.FC<AIComponentsProps> = ({ darkMode }) => {
 
             <div className="content-wrapper relative z-10" style={{ paddingTop: '120px', paddingBottom: '80px', maxWidth: '1400px', margin: '0 auto' }}>
                 
-                {/* 1. Hero Section */}
                 <div style={{ marginBottom: '64px', textAlign: 'center' }}>                   
                     <SloganRibbon 
                         darkMode={darkMode}
@@ -46,7 +45,6 @@ const AIComponents: React.FC<AIComponentsProps> = ({ darkMode }) => {
                     />
                 </div>
 
-                {/* 2. NeuCallToAction */}
                 <section style={{ marginBottom: '120px' }}>
                     <NeuCallToAction 
                         version={2} 
@@ -61,16 +59,12 @@ const AIComponents: React.FC<AIComponentsProps> = ({ darkMode }) => {
                     />
                 </section>
 
-                {/* 3. Build With Convenience */}
                 <BuildWithConvenience darkMode={darkMode} />
 
-                {/* 4. Design | Integrate Interactive Section */}
                 <DesignIntegrateShowcase darkMode={darkMode} />
 
-                {/* 5. Agnostic Toolkit Section */}
                 <AgnosticToolkit darkMode={darkMode}/>
 
-                {/* 6. Agentic Infrastructure */}
                 <section className="agentic-infrastructure-section">
                     <div className="agentic-header">
                         <h2 style={{color: darkMode ? '#0a0a0cbf' : '#000000'}}>Agentic <span style={{color: '#800020'}}>AI</span><br/>Tenets</h2>

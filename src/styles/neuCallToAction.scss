@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 80px;
-  /* Add default opacity for the scroll reveal hook */
   opacity: 0;
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -103,23 +102,20 @@
     perspective: 1000px; 
   }
 
-  /* Modern Enterprise Neumorphism (Glass + Soft Light + 3D Tilt) */
   .tactile-image-container {
     position: relative;
     width: 100%;
     max-width: 500px;
     border-radius: 24px;
-    padding: 1px; // Space for the 1px gradient border
+    padding: 1px; 
     background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.01) 100%);
     box-shadow: 
       0 20px 40px -10px rgba(0,0,0,0.5),
       inset 0 1px 0 rgba(255,255,255,0.1);
       
-    /* Default transition for resetting the tilt when mouse leaves */
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     transform-style: preserve-3d;
 
-    /* When the mouse is actively moving, shorten the transition so it tracks smoothly */
     &.is-interacting {
       transition: transform 0.1s ease-out;
       
@@ -134,20 +130,18 @@
       margin-top: 20px;
     }
 
-    /* Disable 3D tilt effects on touch devices */
     @media (hover: none) {
       &.is-interacting {
         transform: none !important;
       }
     }
 
-    /* Dynamic Glare Layer */
     .tactile-glare {
       position: absolute;
       inset: 0;
       border-radius: 24px;
-      pointer-events: none; /* Prevents glare from stealing mouse events */
-      z-index: 2; /* Sits above the glass panel */
+      pointer-events: none; 
+      z-index: 2; 
       transition: opacity 0.4s ease;
       mix-blend-mode: overlay; 
     }
@@ -161,7 +155,6 @@
       height: 100%;
       overflow: hidden;
       z-index: 1;
-      /* Prevent children from flattening out the 3D effect */
       transform: translateZ(20px); 
 
       .product-image {
@@ -176,7 +169,6 @@
       }
     }
 
-    /* Ambient base shadow mimicking light reflecting off the desk */
     .tactile-shadow {
       position: absolute;
       bottom: -20px;
@@ -189,12 +181,11 @@
       opacity: 0.4;
       transition: all 0.4s ease;
       z-index: -1;
-      transform: translateZ(-30px); /* Push shadow behind the object */
+      transform: translateZ(-30px); 
     }
   }
 }
 
-/* Ensure the scroll reveal animation works */
 .fade-in-up {
   opacity: 1;
   animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;

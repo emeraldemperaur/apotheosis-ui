@@ -14,7 +14,6 @@ const HomeBase = ({ darkMode }: { darkMode: boolean }) => {
                 <div className="grid-overlay"></div>
             </div>
 
-            {/* Background Depth: Falling Squares */}
             <div className="hero-canvas-container">
                 <div className="canvas-mask">
                     <FallingSquares 
@@ -25,7 +24,6 @@ const HomeBase = ({ darkMode }: { darkMode: boolean }) => {
                 </div>
             </div>
 
-            {/* Content elevated over the canvas */}
             <div className="content-wrapper relative z-10 pt-16">
                 <SloganRibbon 
                     darkMode={darkMode}
@@ -55,14 +53,12 @@ const HomeBase = ({ darkMode }: { darkMode: boolean }) => {
                 </div>
             </div>
 
-            {/* Geometric Cut Separator */}
             <div className="angled-separator relative z-10">
                 <svg viewBox="0 0 1440 48" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 48h1440V0h-136L1250 48H190L136 0H0v48z" fill="currentColor"/>
                 </svg>
             </div>
 
-            {/* Evolving Components Showcase Grid */}
             <section className="dark-section showcase-section relative z-10">
                 <div className="content-wrapper">
                     <div className="section-header">
@@ -120,7 +116,6 @@ const HomeBase = ({ darkMode }: { darkMode: boolean }) => {
                 </div>
             </section>
 
-            {/* Frameworks & Integrations */}
             <section className="dark-section ecosystem-section relative z-10">
                 <div className="angled-separator bottom-cut">
                     <svg viewBox="0 0 1440 48" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -169,7 +164,6 @@ const HomeBase = ({ darkMode }: { darkMode: boolean }) => {
                 </svg>
             </div>
 
-            {/* Constellation / Call to Action Section */}
             <section className="constellation-section relative z-10">
                 <div className="content-wrapper">
                     <header className="constellation-header">
@@ -180,7 +174,6 @@ const HomeBase = ({ darkMode }: { darkMode: boolean }) => {
                     <div className="constellation-wrapper">
                         <div className="constellation-underglow"></div>
                         
-                        {/* Desktop Arc Layout */}
                         <ul className="constellation-list desktop-arc">
                             <li style={{ transform: 'translate(0, -81px)', opacity: 0.6 }}><div className="constellation-icon"><i className="bx bxl-figma"></i></div></li>
                             <li style={{ transform: 'translate(0, -53px)', opacity: 0.85 }}><div className="constellation-icon"><i className="bx bxl-nodejs"></i></div></li>
@@ -202,7 +195,6 @@ const HomeBase = ({ darkMode }: { darkMode: boolean }) => {
                             <li style={{ transform: 'translate(0, -81px)', opacity: 0.6 }}><div className="constellation-icon"><i className="bx bxl-github"></i></div></li>
                         </ul>
 
-                        {/* Mobile Vertical Layout */}
                         <div className="mobile-stack">
                             <div className="constellation-pill">
                                 <i className="bx bx-chip"></i>

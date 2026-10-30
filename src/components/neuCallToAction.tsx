@@ -10,7 +10,6 @@ const NeuCallToAction = ({version, heading, subheading, content, imgSrc, routePa
     const isFlipped = version === 2;
     const [revealRef, isVisible] = useScrollReveal(0.15); 
     
-    // --- 3D Tilt Logic ---
     const cardRef = useRef<HTMLDivElement>(null);
     const [tiltStyle, setTiltStyle] = useState<string>('');
     const [isHovered, setIsHovered] = useState(false);
@@ -22,14 +21,12 @@ const NeuCallToAction = ({version, heading, subheading, content, imgSrc, routePa
         const card = cardRef.current;
         const rect = card.getBoundingClientRect();
         
-        // Find cursor position relative to the card's center
         const x = e.clientX - rect.left; 
         const y = e.clientY - rect.top;
         
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         
-        // Calculate rotation degrees (max 10 degrees of tilt)
         const rotateX = ((y - centerY) / centerY) * -10;
         const rotateY = ((x - centerX) / centerX) * 10;
         
@@ -38,7 +35,6 @@ const NeuCallToAction = ({version, heading, subheading, content, imgSrc, routePa
 
     const handleMouseLeave = () => {
         setIsHovered(false);
-        // Reset to default on leave
         setTiltStyle(`perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`);
     };
 
@@ -71,7 +67,6 @@ const NeuCallToAction = ({version, heading, subheading, content, imgSrc, routePa
                     <div className="tactile-glass-panel">
                         <img className="product-image" src={imgSrc} alt={heading} />
                     </div>
-                    {/* The shadow will move slightly as the card tilts for realism */}
                     <div className="tactile-shadow"></div>
                 </div>
             </div>

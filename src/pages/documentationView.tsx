@@ -11,7 +11,6 @@ const Documentation = ({ darkMode }: DocumentationProps) => {
 
     return(
         <main className={`enterprise-layout relative ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-            {/* Ambient Background matching HomeBase */}
             <div className="ambient-background">
                 <div className="glow-orb orb-1"></div>
                 <div className="glow-orb orb-2"></div>
@@ -32,7 +31,6 @@ const Documentation = ({ darkMode }: DocumentationProps) => {
                 <section className="docs-embed-section">
                     <div className="embed-window">
                         
-                        {/* Glassmorphic Window Header */}
                         <div className="window-header">
                             <div className="window-controls">
                                 <span className="dot r"></span>
@@ -55,7 +53,6 @@ const Documentation = ({ darkMode }: DocumentationProps) => {
                             </div>
                         </div>
 
-                        {/* Embed Content */}
                         <div className="embed-content">
                             <ChromaticEmbed src={storybookBaseUrl} darkMode={darkMode} />
                         </div>

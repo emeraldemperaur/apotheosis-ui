@@ -4,7 +4,7 @@ import * as THREE from 'three';
 interface GnosisOrbProps {
     width?: string;
     height?: string;
-    color?: string; // Retained for prop compatibility, but ignored in the shader to enforce monochrome
+    color?: string;
 }
 
 const vertexShader = `
@@ -59,15 +59,10 @@ const GnosisOrb: React.FC<GnosisOrbProps> = ({ width = '100%', height = '100%' }
 
     useEffect(() => {
         if (!mountRef.current) return;
-
         const container = mountRef.current;
         const scene = new THREE.Scene();
-        
-        // Orthographic camera accurately maps the 2D sphere to the viewport bounds
         const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
         camera.position.z = 1;
-
-        // Set alpha: true so the background remains transparent behind the sphere
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
         container.appendChild(renderer.domElement);
@@ -79,7 +74,6 @@ const GnosisOrb: React.FC<GnosisOrbProps> = ({ width = '100%', height = '100%' }
             u_resolution: { value: new THREE.Vector2() }
         };
 
-        // Restored original 320x320 high-fidelity geometry to prevent grid aliasing
         const geometry = new THREE.SphereGeometry(0.7, 320, 320);
         const material = new THREE.ShaderMaterial({
             transparent: true,

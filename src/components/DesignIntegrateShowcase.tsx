@@ -181,7 +181,6 @@ export default function Chat() {
                                 ) : (
                                     <div className="preview-view chat-viewport">
                                         
-                                        {/* User Bubble with Avatar */}
                                         <div 
                                             className={`chat-bubble user-bubble ${showUserBubble ? 'fade-in' : 'hidden'}`}
                                             style={{ flexDirection: 'row', gap: '16px', alignItems: 'flex-end' }}
